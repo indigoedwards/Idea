@@ -11,4 +11,4 @@ def innerproduct(state1,state2,system):
     if (type(system) != idea.system.System):
         raise Exception("System is not valid")
     
-    innerproduct = abs(np.sum(state1.full*state2.full)*system.dx**system.count)
+    return abs(np.sum(state1.full*state2.full)*system.dx**system.count)
