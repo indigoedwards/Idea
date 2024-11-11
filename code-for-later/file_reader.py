@@ -13,6 +13,8 @@ NPFUNCS = ["np.arcsinh","np.arccosh","np.arctanh",
          "np.exp","np.log","np.sin","np.cos","np.tan"]
 VARS = ["sep","x"]
 
+ALLOWED_JOBS = ["assemble", "find", "plot-potential"]
+
 def read_potential_file():
     with open("potential.txt","r") as file:
         equ = file.read().replace(" ","")
@@ -42,4 +44,13 @@ def read_potential_file():
         plt.plot(x,potential)
         plt.show()
 
-read_potential_file()
+def read_param_file():
+    with open("param.txt","r") as file:
+        inputfile = [line.strip() for line in file.readlines()]
+    inputs = []
+    for line in inputfile:
+        if line != "" and line[0] != "#":
+            inputs.append(line)
+    print(inputs)
+
+read_param_file()

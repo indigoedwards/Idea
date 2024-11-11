@@ -19,27 +19,33 @@ output_file = ""
 save_state_directory = ""
 save_graph_directory = ""
 
+
+starting-separation = 10
+
+
+#============PLOT POTENTIAL SETTINGS=============
+
 #============ASSEMBLE SETTINGS===================
 #WELL MOVING SETTINGS
 #distances are given from centre (0)
-starting_distance = 20
-distance_step = 0.1
-inner_prod_tolerance = 0.1
+distance_step = 0.1 #req if assemble
+inner_prod_tolerance = 0.1 #req if assemble
+search-limit = 3
 #OUTPUT SETTINGS
-enable_gif_generation = True
-gif_observables = ["density","wavefunction","energy","exch-energy","kin-energy"]
-graph_final_state = True
-final_state_graphs = ["density","wavefunction","exch-energy","kin-energy"]      
+enable_gif_generation = True # assume false
+gif_observables = ["density","wavefunction","energy","exch-energy","kin-energy"] # req if gif ^
+graph_final_state = True # assume false
+final_state_graphs = ["density","wavefunction","exch-energy","kin-energy"] # req if ^
 #FINDING EXCITATION SETTINGS
 enable_finding_double = True
 known_double_excitation = 7 #only needed if enable_finding_double=False
 
 #================FIND SETTINGS===================
-excitation_limit = 15
-peakfinder_sensitivity = 20
+excitation_limit = 15 # req if enable finding double 
+peakfinder_sensitivity = 20 # req if enable finding double
 #OUTPUT SETTINGS
 
-#==========GENERAL OUTPUTS======================
+#==========GENERAL OUTPUTS====================== # assume false
 output_observables = True     
 output_energy = True
 save_states = True
