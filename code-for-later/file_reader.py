@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from settings import Settings
+import os
 
 DIGITS = ["0","1","2","3","4","5","6","7","8","9"]
 OPS = ["(",")",".","*","+","/","-","^"]
@@ -97,9 +98,17 @@ def xgrid_checker(inputs):
         raise Exception("duplicate parameters specified, specified parameters must be xgrid-min, xgrid-max, xgrid-points")
     s.set_xgrid(args)
 
+def path_checker(inputs):
+    if len(inputs) == 0:
+        raise Exception("no output path specified")
+    elif len(inputs) > 3:
+        raise Exception("too many output paths specified")
+    
+    print(inputs)
+    print(os.getcwd())
 
-PARAMETERS = ["job","xgrid"]
-PARAM_CHECKS = [job_checker,xgrid_checker]
+PARAMETERS = ["job","xgrid","path"]
+PARAM_CHECKS = [job_checker,xgrid_checker,path_checker]
 
 s = Settings()
 

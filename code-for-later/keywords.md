@@ -29,6 +29,7 @@ xgrid-points : 150
     - directory for saving state files
 - path-graph
     - directory for saving graphs (for gifs?)
+- will create folders if they don't currently exist
 
 ## something keywords
 

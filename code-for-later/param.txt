@@ -12,6 +12,8 @@ xgrid-min : -5
 xgrid-max : 5
 xgrid-points : 150
 
+path-output : /test
+
 starting-separation : 10
 separation-step : 0.1
 inner-product-tol : 0.1
