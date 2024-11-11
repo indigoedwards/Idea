@@ -17,4 +17,10 @@ Right now Idea doesnt work, we havnt finished making it yet
 
 
 ----------------------------
-<h1>weeeeeee</h1>
+<h1>Inputs</h1>
+Please write inputs into a param.txt. There is a sample one provided! 
+Stuff about each parameter
+
+Please write your potential into potential.txt in python format. A sample is also provided.
+This program works for wells that initially start split in space.
+Stuff about potentials
