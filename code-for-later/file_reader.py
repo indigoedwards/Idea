@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from settings import Settings
 
 DIGITS = ["0","1","2","3","4","5","6","7","8","9"]
 OPS = ["(",")",".","*","+","/","-","^"]
@@ -51,6 +52,28 @@ def read_param_file():
     for line in inputfile:
         if line != "" and line[0] != "#":
             inputs.append(line)
+    inputs = [line.split("#")[0].strip() for line in inputs]
     print(inputs)
+    for i in range(len(PARAMETERS)):
+        lines = [line for line in inputs if PARAMETERS[i] in line]
+        PARAM_CHECKS[i](lines)
+
+def job_checker(inputs):
+    if len(inputs) == 0:
+        raise Exception("no job specified")
+    elif len(inputs) > 1:
+        raise Exception("too many jobs specified, only one job may be specified")
+    arg = inputs[0].split(":")[-1].strip()
+    if arg not in ALLOWED_JOBS:
+        raise Exception("not an allowed job")
+    
+    s.set_job(arg)
+
+PARAMETERS = ["job"]
+PARAM_CHECKS = [job_checker]
+
+s = Settings()
 
 read_param_file()
+
+print(s)
