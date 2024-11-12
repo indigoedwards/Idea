@@ -1,5 +1,5 @@
 # Idea (Indigo's double excitation assembler)
-![alt text](http://135.181.87.229/w/images/6/65/Idea_logo.png)
+![alt text](https://frogchairminecraft.co.uk/w/images/6/65/Idea_logo.png)
 ----------------------------
 A python program for all your one dimentional double excitation needs :D
 
