@@ -30,10 +30,11 @@ starting-separation = 10
 #distances are given from centre (0)
 distance_step = 0.1 #req if assemble
 inner_prod_tolerance = 0.1 #req if assemble
-search-limit = 3
+excitations_above_double = 5 #NEW req if assemble
 #OUTPUT SETTINGS
 enable_gif_generation = True # assume false
-gif_observables = ["density","wavefunction","energy","exch-energy","kin-energy"] # req if gif ^
+gif_observables = ["density","wavefunction","energy","exch-energy","kin-energy"] #req if gif ^
+generate_innerproduct_gif = True #NEW assume false, requires save_states=True
 graph_final_state = True # assume false
 final_state_graphs = ["density","wavefunction","exch-energy","kin-energy"] # req if ^
 #FINDING EXCITATION SETTINGS
