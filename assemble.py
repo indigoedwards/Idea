@@ -1,5 +1,6 @@
 import iDEA as idea
 import numpy as np
+import gc
 
 
 #Assemble a double excitation state
@@ -23,66 +24,83 @@ def potential():
 def innerprod():
     return
 
+def savestate():
+    return
 
-def assemble(xgrid,doubleexcitation,initialdistance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step):
+def innerprodgrid():
+    return
+
+
+def assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step):
 
     #get initial system for finding double excitation
     v_int = idea.interactions.softened_interaction(xgrid)
-    initialpotential = potential(initialdistance)
-    initialsystem = idea.system.system(xgrid,initialpotential,v_int,electrons="uu")
+    initial_potential = potential(initial_distance)
+    initial_system = idea.system.system(xgrid,initial_potential,v_int,electrons="uu")
 
     #if no initial excitation specified, find it for the initial distance.
     if doubleexcitation == 0:
-        doubleexcitation = finddoubleexcitation(initialsystem,sensitivity,limit)
-    initialexcitation = doubleexcitation + abovedouble
+        doubleexcitation = finddoubleexcitation(initial_system,sensitivity,limit)
+
+    maxexcitation_gen = doubleexcitation + abovedouble
     
     #Generate state at first distance
-    oldsystem = idea.system.system(xgrid,initialpotential,v_int,electrons="uu")
-    oldstate = idea.methods.interacting.solve(oldsystem,k=initialexcitation,stopprint=True, allstates=True)
-    distance = initialdistance + distance_step
-    maxexcitation = initialexcitation
+    print("Generating initial state")
+    distance_old = initial_distance
+    distance_new  = initial_distance - distance_step
+    system_old = idea.system.system(xgrid,potential(distance_old),v_int,electrons="uu")
+    state_old = idea.methods.interacting.solve(system_old, k=maxexcitation_gen, stopprint=True, allstates=True)
+    savestate(state_old)
     n = 1
 
-    while distance != 0:
-        #Generate new states
-        potential = potential(distance)
-        newsystem = idea.system.system(xgrid,potential,v_int,electrons="uu")
-        newstate = idea.methods.interacting.solve(newsystem,k=maxexcitation,stopprint=True,allstates=True)
-
-        #compute inner product grid
-        current_innerprodgrid = np.zeros((maxexcitation,maxexcitation))
-        for oldstate_index in range(0,maxexcitation):
-            for newstate_index in range(0,maxexcitation):
-                current_innerprodgrid[oldstate_index][newstate_index] = innerprod(oldstate.allfull[...,oldstate_index],newstate.allfull[...,newstate_index],oldsystem,newsystem)
+    #Begin moving closer
+    print("Starting Movement")
+    while distance_old != 0:
         
-        #try to find the oldstate in the new system
-        if np.max(current_innerprodgrid[doubleexcitation]) > 1-innerprod_tolerence:
-            #innerprod found
-            doubleexcitation = np.argmax(current_innerprodgrid[doubleexcitation])
-            #ADD innerprodgrid to main
-            #ADD energy to main
-            #SAVE state if needed idk
-            if n != 1:
-                if (np.mod(distance,distance_step/(2**(n-1)))) != 0:
-                    distance = distance + distance_step/(2**(n-1))
-                else:
-                    distance = distance + distance_step
-                    n = 1
-            else:
-                distance = distance + distance_step
+        #generate new state
+        print(f"Generating state at distance {distance_new}")
+        maxexcitation_gen = doubleexcitation + abovedouble
+        system_new = idea.system.system(xgrid,potential(distance_new),v_int,electrons="uu")
+        state_new = idea.methods.interacting.solve(system_new, k=maxexcitation_gen, stopprint=True, allstates=True)
+
+        #compute inner product grid for these states
+        innergrid_old_new = innerprodgrid(state_old,state_new)
+
+        #get value and index of highest inner product for old state double excitation
+        de_innerprod_value = np.max(innergrid_old_new[doubleexcitation])
+        de_innerprod_index = np.argmax(innergrid_old_new[doubleexcitation])
+
+        #check if there is an inner product above 1-tolerance
+        if (de_innerprod_value > (1-innerprod_tolerence)):
+            #state found
+            #is the current distance a multiple of the step distance?
+            if (round(distance_new/distance_step,2)).is_integer():
+                print(f"Double excitation state found at distance {distance_new}")
+                state_old = state_new
+                del state_new
+                gc.collect()
+                distance_old = distance_new
+                distance_new = distance_new - distance_step
                 n = 1
+                savestate(state_old)
+                doubleexcitation = de_innerprod_index
+            else:
+                print(f"Double excitation state found at distance {distance_new}")
+                state_old = state_new
+                del state_new
+                gc.collect()
+                distance_old = distance_new
+                distance_new = distance_new - (distance_step/(2**(n-1)))
+                savestate(state_old)
+                doubleexcitation = de_innerprod_index
         else:
-            #innerprod not found
-            #check state between
-            distance = distance - distance_step/(2**n)
+            #state not found, check half distance
+            print(f"Double excitation state not found at distance {distance_new}")
+            del state_new
+            gc.collect()
+            distance_old = distance_old
+            distance_new = distance_old-(distance_step/(2**n))
             n = n + 1
 
-        
-
-
+    return doubleexcitation
     
-        
-
-
-
-    return 
