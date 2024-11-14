@@ -69,7 +69,7 @@ def assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedoub
             #state found
             #is the current distance a multiple of the step distance?
             if (round(distance_new/distance_step,2)).is_integer():
-                print(f"{datetime.datetime.now()}: Double excitation state found at distance {distance_new}")
+                print(f"{datetime.datetime.now()}: Double excitation state found at distance {distance_new}, Innerproduct {de_innerprod_value}")
                 state_id = state_id + 1
                 doubleexcitation = de_innerprod_index
                 save_observables(state_old,system_old,doubleexcitation,distance_new,distance_old,outputpath,state_id,innergrid_old_new)
@@ -82,7 +82,7 @@ def assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedoub
                 n = 1
                 
             else:
-                print(f"{datetime.datetime.now()}: Double excitation state found at distance {distance_new}")
+                print(f"{datetime.datetime.now()}: Double excitation state found at distance {distance_new}, Innerproduct {de_innerprod_value}")
                 state_id = state_id + 1
                 doubleexcitation = de_innerprod_index
                 save_observables(state_old,system_old,doubleexcitation,distance_new,distance_old,outputpath,state_id,innergrid_old_new)
@@ -96,7 +96,7 @@ def assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedoub
                 
         else:
             #state not found, check half distance
-            print(f"{datetime.datetime.now()}: Double excitation state not found at distance {distance_new}")
+            print(f"{datetime.datetime.now()}: Double excitation state not found at distance {distance_new}, Innerproduct {de_innerprod_value}")
             del state_new
             gc.collect()
             distance_new = distance_old-(distance_step/(2**n))
