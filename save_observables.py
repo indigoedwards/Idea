@@ -16,7 +16,8 @@ def save_observables(state,system,excitation,newdistance,olddistance,outputpath,
     plt.close()
 
     #make density plot
-    plt.plot(system.x, idea.observables.density(system, state=state.allfull[...,excitation]), "m-", label="Charge Density")
+    state.full = state.allfull[...,excitation]
+    plt.plot(system.x, idea.observables.density(system, state=state), "m-", label="Charge Density")
     plt.plot(system.x, system.v_ext, "g--", label="Potential")
     plt.xlabel("x (Bohrs)")
     plt.ylabel("v_ext / charge density")
