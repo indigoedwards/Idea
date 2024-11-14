@@ -10,7 +10,7 @@ abovedouble = 5
 innerprod_tolerence = 0.1
 distance_step = 0.5
 maxdivisions = 4
-outputpath = "~/indigo_testing_Idea/output"
+outputpath = "../output"
 
 
 
