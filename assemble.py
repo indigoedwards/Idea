@@ -5,6 +5,7 @@ from innerprodgrid import innerprodgrid
 from find import finddoubleexcitation
 from save_observables import save_observables
 from testpotential import potential
+from save_observables import save_innerprodgrid
 import datetime
 
 
@@ -38,7 +39,7 @@ def assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedoub
     maxexcitation_gen = doubleexcitation + abovedouble
     
     #Generate state at first distance
-    print("{datetime.datetime.now()}: Generating initial state")
+    print(f"{datetime.datetime.now()}: Generating initial state at distance {initial_distance}")
     distance_old = initial_distance
     distance_new  = initial_distance - distance_step
     system_old = idea.system.System(xgrid,potential(distance_old),v_int,electrons="uu")
@@ -48,7 +49,7 @@ def assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedoub
     n = 1
 
     #Begin moving closer
-    print("{datetime.datetime.now()}: Starting Movement")
+    print(f"{datetime.datetime.now()}: Starting Movement")
     while distance_old != 0:
         
         #generate new state
@@ -58,7 +59,8 @@ def assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedoub
         state_new = idea.methods.interacting.solve(system_new, k=maxexcitation_gen, stopprint=True, allstates=True)
 
         #compute inner product grid for these states
-        innergrid_old_new = innerprodgrid(state_old,state_new)
+        innergrid_old_new = innerprodgrid(state_old,state_new,system_old,system_new,maxexcitation_gen)
+        save_innerprodgrid(innergrid_old_new,distance_old,distance_new,outputpath)
 
         #get value and index of highest inner product for old state double excitation
         de_innerprod_value = np.max(innergrid_old_new[doubleexcitation])

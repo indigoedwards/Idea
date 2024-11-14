@@ -15,6 +15,6 @@ def innerprodgrid(state1,state2,system1,system2,maxexcitation):
     grid = np.zeros((maxexcitation,maxexcitation))
     for i in range(0,maxexcitation):
         for j in range(0,maxexcitation):
-            grid[i][j] = innerproduct(state1.allfull[...,i],state2.allfull[...,j],system1,system2)
+            grid[i][j] = innerproduct(state1,state2,system1,system2)
     
     return grid 
