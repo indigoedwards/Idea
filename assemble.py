@@ -39,7 +39,7 @@ def assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedoub
     maxexcitation_gen = doubleexcitation + abovedouble
     
     #Generate state at first distance
-    print(f"{datetime.datetime.now()}: Generating initial state at distance {initial_distance}")
+    print(f"{datetime.datetime.now()}: Generating initial state at distance {initial_distance}, DE={doubleexcitation}")
     distance_old = initial_distance
     distance_new  = initial_distance - distance_step
     system_old = idea.system.System(xgrid,potential(distance_old),v_int,electrons="uu")
@@ -71,7 +71,7 @@ def assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedoub
             #state found
             #is the current distance a multiple of the step distance?
             if (round(distance_new/distance_step,2)).is_integer():
-                print(f"{datetime.datetime.now()}: Double excitation state found at distance {distance_new}, Innerproduct {de_innerprod_value}")
+                print(f"{datetime.datetime.now()}: Double excitation state found at distance {distance_new}, Innerproduct {de_innerprod_value}, DE={de_innerprod_index}")
                 state_id = state_id + 1
                 doubleexcitation = de_innerprod_index
                 save_observables(state_old,system_old,doubleexcitation,distance_new,distance_old,outputpath,state_id,innergrid_old_new)
@@ -84,7 +84,7 @@ def assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedoub
                 n = 1
                 
             else:
-                print(f"{datetime.datetime.now()}: Double excitation state found at distance {distance_new}, Innerproduct {de_innerprod_value}")
+                print(f"{datetime.datetime.now()}: Double excitation state found at distance {distance_new}, Innerproduct {de_innerprod_value}, DE={de_innerprod_index}")
                 state_id = state_id + 1
                 doubleexcitation = de_innerprod_index
                 save_observables(state_old,system_old,doubleexcitation,distance_new,distance_old,outputpath,state_id,innergrid_old_new)

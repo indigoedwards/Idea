@@ -27,7 +27,7 @@ def save_observables(state,system,excitation,newdistance,olddistance,outputpath,
     plt.close()
 
     #make inner prod grid
-    if innerprodgrid != 0:
+    if np.sum(innerprodgrid) != 0:
         fig = plt.figure()
         ax = fig.add_subplot(111)
         im = ax.imshow(innerprodgrid,cmap="Purples",vmin=0,vmax=1)
