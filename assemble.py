@@ -1,6 +1,13 @@
 import iDEA as idea
 import numpy as np
 import gc
+from innerprodgrid import innerprodgrid
+from find import finddoubleexcitation
+from save_observables import save_observables
+from testpotential import potential
+import datetime
+
+
 
 
 #Assemble a double excitation state
@@ -15,28 +22,14 @@ import gc
 # generate state at next distance
 # does an inner product exist for the interested state?
 # if yes continue, if no generate state halfway between this state and last state
-def finddoubleexcitation():
-    return
-
-def potential():
-    return
-
-def innerprod():
-    return
-
-def savestate():
-    return
-
-def innerprodgrid():
-    return
 
 
-def assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step):
+def assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,maxdivisions,outputpath):
 
     #get initial system for finding double excitation
     v_int = idea.interactions.softened_interaction(xgrid)
     initial_potential = potential(initial_distance)
-    initial_system = idea.system.system(xgrid,initial_potential,v_int,electrons="uu")
+    initial_system = idea.system.System(xgrid,initial_potential,v_int,electrons="uu")
 
     #if no initial excitation specified, find it for the initial distance.
     if doubleexcitation == 0:
@@ -45,22 +38,23 @@ def assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedoub
     maxexcitation_gen = doubleexcitation + abovedouble
     
     #Generate state at first distance
-    print("Generating initial state")
+    print("{datetime.datetime.now()}: Generating initial state")
     distance_old = initial_distance
     distance_new  = initial_distance - distance_step
-    system_old = idea.system.system(xgrid,potential(distance_old),v_int,electrons="uu")
+    system_old = idea.system.System(xgrid,potential(distance_old),v_int,electrons="uu")
     state_old = idea.methods.interacting.solve(system_old, k=maxexcitation_gen, stopprint=True, allstates=True)
-    savestate(state_old)
+    state_id = 1
+    save_observables(state_old,system_old,doubleexcitation,distance_new,distance_old,outputpath,state_id,0)
     n = 1
 
     #Begin moving closer
-    print("Starting Movement")
+    print("{datetime.datetime.now()}: Starting Movement")
     while distance_old != 0:
         
         #generate new state
-        print(f"Generating state at distance {distance_new}")
+        print(f"{datetime.datetime.now()}: Generating state at distance {distance_new}")
         maxexcitation_gen = doubleexcitation + abovedouble
-        system_new = idea.system.system(xgrid,potential(distance_new),v_int,electrons="uu")
+        system_new = idea.system.System(xgrid,potential(distance_new),v_int,electrons="uu")
         state_new = idea.methods.interacting.solve(system_new, k=maxexcitation_gen, stopprint=True, allstates=True)
 
         #compute inner product grid for these states
@@ -75,32 +69,41 @@ def assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedoub
             #state found
             #is the current distance a multiple of the step distance?
             if (round(distance_new/distance_step,2)).is_integer():
-                print(f"Double excitation state found at distance {distance_new}")
+                print(f"{datetime.datetime.now()}: Double excitation state found at distance {distance_new}")
+                state_id = state_id + 1
+                doubleexcitation = de_innerprod_index
+                save_observables(state_old,system_old,doubleexcitation,distance_new,distance_old,outputpath,state_id,innergrid_old_new)
+                system_old = system_new
                 state_old = state_new
                 del state_new
                 gc.collect()
                 distance_old = distance_new
                 distance_new = distance_new - distance_step
                 n = 1
-                savestate(state_old)
-                doubleexcitation = de_innerprod_index
+                
             else:
-                print(f"Double excitation state found at distance {distance_new}")
+                print(f"{datetime.datetime.now()}: Double excitation state found at distance {distance_new}")
+                state_id = state_id + 1
+                doubleexcitation = de_innerprod_index
+                save_observables(state_old,system_old,doubleexcitation,distance_new,distance_old,outputpath,state_id,innergrid_old_new)
+                system_old = system_new
                 state_old = state_new
                 del state_new
                 gc.collect()
                 distance_old = distance_new
                 distance_new = distance_new - (distance_step/(2**(n-1)))
-                savestate(state_old)
-                doubleexcitation = de_innerprod_index
+                
+                
         else:
             #state not found, check half distance
-            print(f"Double excitation state not found at distance {distance_new}")
+            print(f"{datetime.datetime.now()}: Double excitation state not found at distance {distance_new}")
             del state_new
             gc.collect()
-            distance_old = distance_old
             distance_new = distance_old-(distance_step/(2**n))
+            if n >= maxdivisions:
+                raise Exception("Max number of deivisons reached. Stopping")
             n = n + 1
 
+    idea.state.save_many_body_state(state_old.allfull[...,doubleexcitation],f"{outputpath}/doublestate")
     return doubleexcitation
     
