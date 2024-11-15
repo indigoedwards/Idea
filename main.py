@@ -1,19 +1,34 @@
 from assemble import assemble
+from testpotential import potential
+from clearoutputs import clearoutputs
+import iDEA as idea
+from find import finddoubleexcitation
+from gifs import gif_innerproducts, gif_densities, gif_wavefunctions
 import numpy as np
 import sys
+import matplotlib.pyplot as plt
+from testinputs import xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,maxdivisions,outputpath,job
 
-xgrid = np.linspace(-30,30,300)
-doubleexcitation = 7
-initial_distance = 6.25
-sensitivity = 20
-limit = 50
-abovedouble = 5
-innerprod_tolerence = 0.1
-distance_step = 0.25
-maxdivisions = 8
-outputpath = "../output"
+clearoutputs(outputpath)
 
-print("test")
-sys.stdout.flush()
+if job == "assemble":
+    print(assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,maxdivisions,outputpath))
+    gif_wavefunctions(outputpath)
+    gif_densities(outputpath)
+    gif_innerproducts(outputpath)
 
-print(assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,maxdivisions,outputpath))
+elif job == "find":
+    v_int = idea.interactions.softened_interaction(xgrid)
+    system = idea.system.System(xgrid,potential(initial_distance),v_int,electrons="uu")
+    print(f"Double excitation found at excitation {finddoubleexcitation(system,sensitivity,limit)}")
+
+elif job == "plotpotential":
+    v_int = idea.interactions.softened_interaction(xgrid)
+    system = idea.system.System(xgrid,potential(initial_distance),v_int,electrons="uu")
+    plt.plot(system.x, system.v_ext, "g--", label="Potential")
+    plt.xlabel("x (Bohrs)")
+    plt.ylabel("v_ext (Hartrees)")
+    plt.legend()
+    plt.savefig(f"{outputpath}/potentialplot.png")
+    plt.close()
+
