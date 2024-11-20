@@ -2,6 +2,8 @@ import iDEA as idea
 import glob
 import contextlib
 from PIL import Image
+import matplotlib.pyplot as plt
+import numpy as np
 
 
 
@@ -50,3 +52,19 @@ def gif_innerproducts(outputpath):
         img.save(fp=fp_out, format='GIF', append_images=imgs,
                 save_all=True, duration=100, loop=0)
     return
+
+def energy_graph(outputpath):
+        data = []
+        with open(f"{outputpath}/energies.txt","r") as file:
+                arr = [line.strip().split(",") for line in file.readlines()]
+                data.append(np.array(arr,dtype=np.float64))
+        data = data[0]
+
+        data = data.transpose()
+
+        plt.plot(data[0],data[2])
+        plt.gca().invert_xaxis()
+        plt.xlabel("Distance from origin (Bohrs)")
+        plt.ylabel("Energy of double excitation (Hartrees)")
+        plt.savefig("energies.png")
+        return

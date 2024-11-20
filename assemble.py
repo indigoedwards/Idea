@@ -28,6 +28,11 @@ import sys
 
 def assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,maxdivisions,outputpath):
 
+    #initialise outputs
+    num_total = 1
+    num_rejected = 0
+    num_accepted = 0
+
     #get initial system for finding double excitation
     v_int = idea.interactions.softened_interaction(xgrid)
     initial_potential = potential(initial_distance)
@@ -56,6 +61,7 @@ def assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedoub
     while distance_old != 0:
         
         #generate new state
+        num_total = num_total + 1
         print(f"{datetime.datetime.now()}: Generating state at distance {distance_new}")
         sys.stdout.flush()
         maxexcitation_gen = doubleexcitation + abovedouble
@@ -73,6 +79,7 @@ def assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedoub
         #check if there is an inner product above 1-tolerance
         if (de_innerprod_value > (1-innerprod_tolerence)):
             #state found
+            num_accepted = num_accepted + 1
             #is the current distance a multiple of the step distance?
             if (round(distance_new/distance_step,2)).is_integer():
                 print(f"{datetime.datetime.now()}: Double excitation state found at distance {distance_new}, Innerproduct {de_innerprod_value}, DE={de_innerprod_index}")
@@ -104,6 +111,7 @@ def assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedoub
                 
         else:
             #state not found, check half distance
+            num_rejected = num_rejected + 1
             print(f"{datetime.datetime.now()}: Double excitation state not found at distance {distance_new}, Innerproduct {de_innerprod_value}")
             sys.stdout.flush()
             del state_new
@@ -114,5 +122,5 @@ def assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedoub
             n = n + 1
 
     idea.state.save_many_body_state(state_old.allfull[...,doubleexcitation],f"{outputpath}/doublestate")
-    return doubleexcitation
+    return doubleexcitation, num_accepted, num_rejected, num_total
     
