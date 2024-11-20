@@ -93,7 +93,7 @@ def assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedoub
                 sys.stdout.flush()
                 state_id = state_id + 1
                 doubleexcitation = de_innerprod_index
-                save_observables(state_old,system_old,doubleexcitation,distance_new,distance_old,outputpath,state_id,innergrid_old_new)
+                save_observables(state_new,system_new,doubleexcitation,distance_new,distance_old,outputpath,state_id,innergrid_old_new)
                 system_old = system_new
                 state_old = state_new
                 del state_new

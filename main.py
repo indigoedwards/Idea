@@ -9,7 +9,7 @@ import sys
 import matplotlib.pyplot as plt
 from testinputs import xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,maxdivisions,outputpath,job
 
-clearoutputs(outputpath)
+#clearoutputs(outputpath)
 
 if job == "assemble":
     print(assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,maxdivisions,outputpath))
