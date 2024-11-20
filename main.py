@@ -4,12 +4,14 @@ from clearoutputs import clearoutputs
 import iDEA as idea
 from find import finddoubleexcitation
 from gifs import gif_innerproducts, gif_densities, gif_wavefunctions, energy_graph
+from title import printtitle
 import numpy as np
 import sys
 import matplotlib.pyplot as plt
 from testinputs import xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,maxdivisions,outputpath,job
 
 clearoutputs(outputpath)
+printtitle()
 
 if job == "assemble":
     excitation, numaccepted, numrejected, numtotal = assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,maxdivisions,outputpath)
