@@ -1,5 +1,5 @@
 from assemble import assemble
-from testpotential import potential
+from potential import potential
 from clearoutputs import clearoutputs
 import iDEA as idea
 from find import finddoubleexcitation
@@ -8,10 +8,10 @@ from title import printtitle
 import numpy as np
 import sys
 import matplotlib.pyplot as plt
-from testinputs import xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,maxdivisions,outputpath,job
+from inputs import xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,maxdivisions,outputpath,job
 
 clearoutputs(outputpath)
-printtitle()
+print(printtitle())
 
 if job == "assemble":
     excitation, numaccepted, numrejected, numtotal = assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,maxdivisions,outputpath)

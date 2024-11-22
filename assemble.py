@@ -4,7 +4,7 @@ import gc
 from innerprodgrid import innerprodgrid
 from find import finddoubleexcitation
 from save_observables import save_observables
-from testpotential import potential
+from potential import potential
 from save_observables import save_innerprodgrid
 import datetime
 import sys

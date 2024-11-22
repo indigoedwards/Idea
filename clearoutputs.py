@@ -1,12 +1,10 @@
 import os
 import glob
-
+import shutil
 
 def clearoutputs(output_filepath):
-    
-    files = glob.glob(f'{output_filepath}/*')
-    for f in files:
-        os.remove(f)
+
+    shutil.rmtree(f"{output_filepath}/")
     
     os.makedirs(f"{output_filepath}/wavefunctions")
     os.makedirs(f"{output_filepath}/innerprods")

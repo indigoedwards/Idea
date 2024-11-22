@@ -111,8 +111,6 @@ d88' `?88P'`88b`?888P'`?88P'`88b
 (_____)                                      (_____)
 '''
 
-    print(title)
-    return
+    return title
 
 
-printtitle()

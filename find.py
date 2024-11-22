@@ -2,6 +2,7 @@ import iDEA as idea
 import numpy as np
 import scipy as sp
 import matplotlib.pyplot as plt
+import datetime
 
 #function to determine if a density contains two electons, each in their first state.
 #INPUTS:    system of state being checked
@@ -32,22 +33,22 @@ def isdoubleexcitation (system,state,sensitivity):
 #RETURNS:   excitation number of doubly excited state for this system.
 def finddoubleexcitation(system,sensitivity,limit):
     #solve
-    print("Finding double excitation")
+    print(f"{datetime.datetime.now()}: Finding double excitation")
     found = 0
     i = 0
     while found == 0:
         teststate = idea.methods.interacting.solve(system, k=i,stopprint=True)
-        ifinnerprod = isdoubleexcitation(system,teststate,sensitivity,system.x)
+        ifinnerprod = isdoubleexcitation(system,teststate,sensitivity)
         if i > limit:
             found = 2
         elif ifinnerprod == True:
             found = 1
         elif ifinnerprod == False:
-            print(f"Searched k={i}, continuing...")
+            print(f"{datetime.datetime.now()}: Searched k={i}, continuing...")
             i = i + 1
         
     if found == 1:  
-        print(f"Double excitation found in the {i}th excited state.")
+        print(f"{datetime.datetime.now()}: Double excitation found in the {i}th excited state.")
         return i
     elif found == 2:
-        raise Exception(f"No double excitations found up to the {limit}th excited state")
+        raise Exception(f"{datetime.datetime.now()}: No double excitations found up to the {limit}th excited state")

@@ -8,10 +8,10 @@ import numpy as np
 #------------------------------------------------
 
 
-xgrid = np.linspace(-30,30,300)
-doubleexcitation = 7
-initial_distance = 20
-sensitivity = 20
+xgrid = np.linspace(-20,20,300)
+doubleexcitation = 0
+initial_distance = 10
+sensitivity = 10
 limit = 50
 abovedouble = 5
 innerprod_tolerence = 0.1
