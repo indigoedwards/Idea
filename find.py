@@ -33,7 +33,7 @@ def isdoubleexcitation (system,state,sensitivity):
 #RETURNS:   excitation number of doubly excited state for this system.
 def finddoubleexcitation(system,sensitivity,limit):
     #solve
-    print(f"{datetime.datetime.now()}: Finding double excitation")
+    print(f"{datetime.datetime.now()}: Finding double excitation",flush=True)
     found = 0
     i = 0
     while found == 0:
@@ -44,11 +44,11 @@ def finddoubleexcitation(system,sensitivity,limit):
         elif ifinnerprod == True:
             found = 1
         elif ifinnerprod == False:
-            print(f"{datetime.datetime.now()}: Searched k={i}, continuing...")
+            print(f"{datetime.datetime.now()}: Searched k={i}, continuing...",flush=True)
             i = i + 1
         
     if found == 1:  
-        print(f"{datetime.datetime.now()}: Double excitation found in the {i}th excited state.")
+        print(f"{datetime.datetime.now()}: Double excitation found in the {i}th excited state.",flush=True)
         return i
     elif found == 2:
-        raise Exception(f"{datetime.datetime.now()}: No double excitations found up to the {limit}th excited state")
+        raise Exception(f"{datetime.datetime.now()}: No double excitations found up to the {limit}th excited state",flush=True)

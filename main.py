@@ -11,15 +11,15 @@ import matplotlib.pyplot as plt
 from inputs import xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,maxdivisions,outputpath,job
 
 clearoutputs(outputpath)
-print(printtitle())
-print("-----------------------------------------------------------------------------------")
+print(printtitle(),flush=True)
+print("-----------------------------------------------------------------------------------",flush=True)
 
 if job == "assemble":
     excitation, numaccepted, numrejected, numtotal = assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,maxdivisions,outputpath)
-    print(f"Final excitation number: {excitation}")
-    print(f"Total states generated: {numtotal}")
-    print(f"States accepted: {numaccepted}")
-    print(f"States rejected: {numrejected}")
+    print(f"Final excitation number: {excitation}",flush=True)
+    print(f"Total states generated: {numtotal}",flush=True)
+    print(f"States accepted: {numaccepted}",flush=True)
+    print(f"States rejected: {numrejected}",flush=True)
     gif_wavefunctions(outputpath)
     gif_densities(outputpath)
     gif_innerproducts(outputpath)
@@ -28,7 +28,7 @@ if job == "assemble":
 elif job == "find":
     v_int = idea.interactions.softened_interaction(xgrid)
     system = idea.system.System(xgrid,potential(initial_distance),v_int,electrons="uu")
-    print(f"Double excitation found at excitation {finddoubleexcitation(system,sensitivity,limit)}")
+    print(f"Double excitation found at excitation {finddoubleexcitation(system,sensitivity,limit)}",flush=True)
 
 elif job == "plotpotential":
     v_int = idea.interactions.softened_interaction(xgrid)
@@ -39,5 +39,5 @@ elif job == "plotpotential":
     plt.legend()
     plt.savefig(f"{outputpath}/potentialplot.png")
     plt.close()
-    print("Finished plotting potential :D")
+    print("Finished plotting potential :D",flush=True)
 
