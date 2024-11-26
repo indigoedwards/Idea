@@ -9,7 +9,7 @@ import numpy as np
 
 
 xgrid = np.linspace(-20,20,300)
-doubleexcitation = 0
+doubleexcitation = 29
 initial_distance = 10
 sensitivity = 10
 limit = 50
@@ -18,4 +18,4 @@ innerprod_tolerence = 0.1
 distance_step = 0.25
 maxdivisions = 10
 outputpath = "../output"
-job = "assemble" #"find" #"plotpotential"
+job = "assemble" #"assemble" #"find" #"plotpotential"

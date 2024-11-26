@@ -12,6 +12,7 @@ from inputs import xgrid,doubleexcitation,initial_distance,sensitivity,limit,abo
 
 clearoutputs(outputpath)
 print(printtitle())
+print("-----------------------------------------------------------------------------------")
 
 if job == "assemble":
     excitation, numaccepted, numrejected, numtotal = assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,maxdivisions,outputpath)
@@ -38,4 +39,5 @@ elif job == "plotpotential":
     plt.legend()
     plt.savefig(f"{outputpath}/potentialplot.png")
     plt.close()
+    print("Finished plotting potential :D")
 
