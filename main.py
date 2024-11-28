@@ -1,4 +1,5 @@
 from assemble import assemble
+import plotext
 from potential import potential
 from clearoutputs import clearoutputs
 import iDEA as idea
@@ -39,5 +40,7 @@ elif job == "plotpotential":
     plt.legend()
     plt.savefig(f"{outputpath}/potentialplot.png")
     plt.close()
+    plotext.plot(system.x, system.v_ext)
+    plotext.show()
     print("Finished plotting potential :D",flush=True)
 
