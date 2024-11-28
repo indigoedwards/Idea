@@ -1,4 +1,5 @@
 import numpy as np
+from potential import *
 #------------------------------------------------
 #================================================
 #=====INDIGO'S DOUBLE EXCITATION ASSEMBLER=======
@@ -9,13 +10,16 @@ import numpy as np
 
 
 xgrid = np.linspace(-20,20,300)
-doubleexcitation = 29
-initial_distance = 10
-sensitivity = 10
-limit = 50
-abovedouble = 5
-innerprod_tolerence = 0.1
-distance_step = 0.25
-maxdivisions = 10
+potential_name = "gaussian1"
+debugging = True #If true, outputs inner product grids for every state generated, even if rejected.
+doubleexcitation = 29 #set if you know initial excitation, otherwise set to 0.
+find_startpoint = 5 #If doubleexcitation=0, only excitations above this value will be searched. If doubleexcitation is known, set to 0.
+initial_distance = 10 #initial distance of the wells from 0.
+sensitivity = 10 #sensitivity of peak finder
+limit = 50 #excitation number limit of the double excitation finder
+abovedouble = 5 #number of excitations above the double excitation that will be generated during assembly
+innerprod_tolerence = 0.1 #Tolerence for accepting states, e.g. tol=0.1 will accept states that has an inner product >0.9
+distance_step = 0.25 #default distance steps
+maxdivisions = 10 #max number of step divisions before the assembler gives up
 outputpath = "../output"
 job = "assemble" #"assemble" #"find" #"plotpotential"

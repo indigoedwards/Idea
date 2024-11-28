@@ -26,7 +26,7 @@ import sys
 # if yes continue, if no generate state halfway between this state and last state
 
 
-def assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,maxdivisions,outputpath):
+def assemble(xgrid,potential_name,debugging,find_startpoint,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,maxdivisions,outputpath):
 
     #initialise outputs
     num_total = 1
@@ -35,12 +35,12 @@ def assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedoub
 
     #get initial system for finding double excitation
     v_int = idea.interactions.softened_interaction(xgrid)
-    initial_potential = potential(initial_distance)
+    initial_potential = potential(xgrid,initial_distance,potential_name)
     initial_system = idea.system.System(xgrid,initial_potential,v_int,electrons="uu")
 
     #if no initial excitation specified, find it for the initial distance.
     if doubleexcitation == 0:
-        doubleexcitation = finddoubleexcitation(initial_system,sensitivity,limit)
+        doubleexcitation = finddoubleexcitation(initial_system,sensitivity,limit,find_startpoint)
 
     maxexcitation_gen = doubleexcitation + abovedouble
     
@@ -48,7 +48,7 @@ def assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedoub
     print(f"{datetime.datetime.now()}: Generating initial state at distance {initial_distance}, DE={doubleexcitation}",flush=True)
     distance_old = initial_distance
     distance_new  = initial_distance - distance_step
-    system_old = idea.system.System(xgrid,potential(distance_old),v_int,electrons="uu")
+    system_old = idea.system.System(xgrid,potential(xgrid,distance_old,potential_name),v_int,electrons="uu")
     state_old = idea.methods.interacting.solve(system_old, k=maxexcitation_gen, stopprint=True, allstates=True)
     state_id = 1
     save_observables(state_old,system_old,doubleexcitation,distance_old,distance_old,outputpath,state_id,0)
@@ -64,12 +64,13 @@ def assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedoub
         print(f"{datetime.datetime.now()}: Generating state at distance {distance_new}",flush=True)
         sys.stdout.flush()
         maxexcitation_gen = doubleexcitation + abovedouble
-        system_new = idea.system.System(xgrid,potential(distance_new),v_int,electrons="uu")
+        system_new = idea.system.System(xgrid,potential(xgrid,distance_new,potential_name),v_int,electrons="uu")
         state_new = idea.methods.interacting.solve(system_new, k=maxexcitation_gen, stopprint=True, allstates=True)
 
         #compute inner product grid for these states
         innergrid_old_new = innerprodgrid(state_old,state_new,system_old,system_new,maxexcitation_gen)
-        save_innerprodgrid(innergrid_old_new,distance_old,distance_new,outputpath)
+        if debugging == True:
+            save_innerprodgrid(innergrid_old_new,distance_old,distance_new,outputpath)
 
         #get value and index of highest inner product for old state double excitation
         de_innerprod_value = np.max(innergrid_old_new[doubleexcitation])
@@ -121,5 +122,6 @@ def assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedoub
             n = n + 1
 
     idea.state.save_many_body_state(state_old.allfull[...,doubleexcitation],f"{outputpath}/doublestate")
+    idea.system.save_system(system_old,f"{outputpath}/doublestate")
     return doubleexcitation, num_accepted, num_rejected, num_total
     

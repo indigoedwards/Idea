@@ -31,11 +31,11 @@ def isdoubleexcitation (system,state,sensitivity):
 #           sensitivity of excitation finder
 #           limit: excitation where excitation finder will error.
 #RETURNS:   excitation number of doubly excited state for this system.
-def finddoubleexcitation(system,sensitivity,limit):
+def finddoubleexcitation(system,sensitivity,limit,startpoint):
     #solve
     print(f"{datetime.datetime.now()}: Finding double excitation",flush=True)
     found = 0
-    i = 0
+    i = startpoint
     while found == 0:
         teststate = idea.methods.interacting.solve(system, k=i,stopprint=True)
         ifinnerprod = isdoubleexcitation(system,teststate,sensitivity)

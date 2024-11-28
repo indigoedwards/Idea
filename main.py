@@ -8,14 +8,14 @@ from title import printtitle
 import numpy as np
 import sys
 import matplotlib.pyplot as plt
-from inputs import xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,maxdivisions,outputpath,job
+from inputs import xgrid,potential_name,debugging,find_startpoint,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,maxdivisions,outputpath,job
 
 clearoutputs(outputpath)
 print(printtitle(),flush=True)
 print("-----------------------------------------------------------------------------------",flush=True)
 
 if job == "assemble":
-    excitation, numaccepted, numrejected, numtotal = assemble(xgrid,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,maxdivisions,outputpath)
+    excitation, numaccepted, numrejected, numtotal = assemble(xgrid,potential_name,debugging,find_startpoint,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,maxdivisions,outputpath)
     print(f"Final excitation number: {excitation}",flush=True)
     print(f"Total states generated: {numtotal}",flush=True)
     print(f"States accepted: {numaccepted}",flush=True)
@@ -27,12 +27,12 @@ if job == "assemble":
 
 elif job == "find":
     v_int = idea.interactions.softened_interaction(xgrid)
-    system = idea.system.System(xgrid,potential(initial_distance),v_int,electrons="uu")
-    print(f"Double excitation found at excitation {finddoubleexcitation(system,sensitivity,limit)}",flush=True)
+    system = idea.system.System(xgrid,potential(xgrid,initial_distance,potential_name),v_int,electrons="uu")
+    print(f"Double excitation found at excitation {finddoubleexcitation(system,sensitivity,limit,find_startpoint)}",flush=True)
 
 elif job == "plotpotential":
     v_int = idea.interactions.softened_interaction(xgrid)
-    system = idea.system.System(xgrid,potential(initial_distance),v_int,electrons="uu")
+    system = idea.system.System(xgrid,potential(xgrid,initial_distance,potential_name),v_int,electrons="uu")
     plt.plot(system.x, system.v_ext, "g--", label="Potential")
     plt.xlabel("x (Bohrs)")
     plt.ylabel("v_ext (Hartrees)")
