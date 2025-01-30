@@ -121,7 +121,7 @@ def assemble(xgrid,potential_name,debugging,find_startpoint,doubleexcitation,ini
                 raise Exception("Max number of deivisons reached. Stopping")
             n = n + 1
 
-    idea.state.save_many_body_state(state_old.allfull[...,doubleexcitation],f"{outputpath}/doublestate")
-    idea.system.save_system(system_old,f"{outputpath}/doublestate")
+    idea.state.save_many_body_state(state_old.allfull[...,doubleexcitation],f"{outputpath}/doublestate.state")
+    idea.system.save_system(system_old,f"{outputpath}/doublestate.system")
     return doubleexcitation, num_accepted, num_rejected, num_total
     

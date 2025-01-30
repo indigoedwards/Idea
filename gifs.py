@@ -10,7 +10,7 @@ import numpy as np
 
 def gif_wavefunctions(outputpath):
     #create gifs from saved plots
-    fp_in = f"{outputpath}/wavefunctions*.png"
+    fp_in = f"{outputpath}/wavefunctions/*.png"
     fp_out = f"{outputpath}/wavefunctions.gif"
     with contextlib.ExitStack() as stack:
         # lazily load images

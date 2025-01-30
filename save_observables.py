@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import iDEA as idea
+import pickle
 
 #save observable numbers & graphs
 
@@ -35,8 +36,8 @@ def save_observables(state,system,excitation,newdistance,olddistance,outputpath,
         im = ax.imshow(innerprodgrid,cmap="Purples",vmin=0,vmax=1)
         plt.ylabel(f"Excitation of state at distance={round(olddistance,2)}")
         plt.xlabel(f"Excitation of state at distance={round(newdistance,2)}")
-        for (j,i),label in np.ndenumerate(innerprodgrid):
-            ax.text(i,j,round(label,2),ha="center", va="center")
+        #for (j,i),label in np.ndenumerate(innerprodgrid):
+        #    ax.text(i,j,round(label,2),ha="center", va="center")
         fig.colorbar(im,label="Inner product",boundaries=np.linspace(0, 1, 11))
         plt.savefig(f"{outputpath}/innerprods/innerprod-ID{str(stateid-1).zfill(4)}")
         plt.close()
@@ -55,10 +56,12 @@ def save_innerprodgrid(innerprodgrid,olddistance,newdistance,outputpath):
     im = ax.imshow(innerprodgrid,cmap="Purples",vmin=0,vmax=1)
     plt.ylabel(f"Excitation of state at distance={round(olddistance,2)}")
     plt.xlabel(f"Excitation of state at distance={round(newdistance,2)}")
-    for (j,i),label in np.ndenumerate(innerprodgrid):
-        ax.text(i,j,round(label,2),ha="center", va="center")
+    #for (j,i),label in np.ndenumerate(innerprodgrid):
+    #    ax.text(i,j,round(label,2),ha="center", va="center")
     fig.colorbar(im,label="Inner product",boundaries=np.linspace(0, 1, 11))
-    plt.savefig(f"{outputpath}/debugging/innerprod-ID{newdistance}.png")
+    plt.savefig(f"{outputpath}/debugging/innerprod-D{newdistance}.png")
     plt.close()
+    pickle.dumps(innerprodgrid,f"{outputpath}/debugging/innerprod-D{newdistance}.pkl")
+
     return
     

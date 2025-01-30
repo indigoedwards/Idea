@@ -6,6 +6,11 @@
 #================================================
 #------------------------------------------------
 import numpy as np
+import matplotlib.pyplot as plt
+import iDEA as idea
+import glob
+import contextlib
+from PIL import Image
 
 def potential(x,d,potential_name):
 
@@ -16,18 +21,18 @@ def potential(x,d,potential_name):
             if x[xindex]<=-d-2:
                 potential1[xindex] = 0
             if -d-2<x[xindex]<=-d:
-                potential1[xindex] = -2*(x[xindex]+d)-4
+                potential1[xindex] = -2*(x[xindex]+d)-8
             if -d<x[xindex]<=-d+2:
-                potential1[xindex] = 2*(x[xindex]+d)-4
+                potential1[xindex] = 2*(x[xindex]+d)-8
             if -d+2<x[xindex]:
                 potential1[xindex] = 0
         for xindex in range(0,len(x)):
             if x[xindex]<=d-2:
                 potential2[xindex] = 0
             if d-2<x[xindex]<=d:
-                potential2[xindex] = -2*(x[xindex]-d)-4.001
+                potential2[xindex] = -2*(x[xindex]-d)-8.001
             if d<x[xindex]<=d+2:
-                potential2[xindex] = 2*(x[xindex]-d)-4.001
+                potential2[xindex] = 2*(x[xindex]-d)-8.001
             if d+2<x[xindex]:
                 potential2[xindex] = 0
 
@@ -107,7 +112,8 @@ def potential(x,d,potential_name):
     
     if potential_name == "cosine":
         # Initialize result array with zeros
-        result = np.zeros_like(x)
+        arr1 = np.zeros_like(x)
+        arr2 = np.zeros_like(x)
 
         # First condition: -pi <= (x - d) <= pi
         condition1 = (-np.pi <= (x - d)) & (x - d <= np.pi)
@@ -116,12 +122,12 @@ def potential(x,d,potential_name):
         condition2 = (-np.pi <= (x + d)) & (x + d <= np.pi)
 
         # Apply the first formula where the first condition is true
-        result[condition1] = -2 * np.cos(x[condition1] - d) - 2
+        arr1[condition1] = -2 * np.cos(x[condition1] - d) - 2
         
         # Apply the second formula where the second condition is true
-        result[condition2] = -2 * np.cos(x[condition2] + d) - 2
+        arr2[condition2] = -2 * np.cos(x[condition2] + d) - 2
 
-        return result
+        return arr1+arr2
     
     if potential_name == "snake":
         return
@@ -152,3 +158,29 @@ def potential(x,d,potential_name):
     
     if potential_name == "mypotential":
         return
+
+
+def create_potential_gif(xgrid,initial_distance,potential_name,outputpath):
+    for i in range(0,50):
+        distance = initial_distance-(initial_distance/50)*i
+        v_int = idea.interactions.softened_interaction(xgrid)
+        system = idea.system.System(xgrid,potential(xgrid,distance,potential_name),v_int,electrons="uu")
+        plt.plot(system.x, system.v_ext, "g--", label="Potential")
+        plt.xlabel("x (Bohrs)")
+        plt.ylabel("v_ext (Hartrees)")
+        plt.legend()
+        plt.savefig(f"{outputpath}/debugging/potentialplot-ID{i.zfill(4)}.png")
+        plt.close()
+
+    fp_in = f"{outputpath}/debugging/potentialplot-*.png"
+    fp_out = f"{outputpath}/potential.gif"
+    with contextlib.ExitStack() as stack:
+        # lazily load images
+        imgs = (stack.enter_context(Image.open(f))
+                for f in sorted(glob.glob(fp_in)))
+        # extract  first image from iterator
+        img = next(imgs)
+        # https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html#gif
+        img.save(fp=fp_out, format='GIF', append_images=imgs,
+                save_all=True, duration=100, loop=0)
+    return

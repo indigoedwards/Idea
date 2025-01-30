@@ -5,6 +5,7 @@ from clearoutputs import clearoutputs
 import iDEA as idea
 from find import finddoubleexcitation
 from gifs import gif_innerproducts, gif_densities, gif_wavefunctions, energy_graph
+from potential import create_potential_gif
 from title import printtitle
 import numpy as np
 import sys
@@ -42,5 +43,6 @@ elif job == "plotpotential":
     plt.close()
     plotext.plot(system.x, system.v_ext)
     plotext.show()
+    create_potential_gif(xgrid,initial_distance,potential_name,outputpath)
     print("Finished plotting potential :D",flush=True)
 
