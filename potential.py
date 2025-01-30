@@ -91,7 +91,8 @@ def potential(x,d,potential_name):
     
     if potential_name == "hookes":
         # Initialize result array with zeros
-        result = np.zeros_like(x)
+        arr1 = np.zeros_like(x)
+        arr2 = np.zeros_like(x)
 
         # First condition: -4 <= (x - d) <= 4
         condition1 = (-4 <= (x - d)) & (x - d <= 4)
@@ -100,12 +101,12 @@ def potential(x,d,potential_name):
         condition2 = (-4 <= (x + d)) & (x + d <= 4)
 
         # Apply the first formula where the first condition is true
-        result[condition1] = 0.25 * (x[condition1] - d)**2 - 4
+        arr1[condition1] = 0.25 * (x[condition1] - d)**2 - 4
         
         # Apply the second formula where the second condition is true
-        result[condition2] = 0.25 * (x[condition2] + d)**2 - 4
+        arr2[condition2] = 0.25 * (x[condition2] + d)**2 - 4
 
-        return result
+        return arr1+arr2
     
     if potential_name == "trapezoid":
         return
