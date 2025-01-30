@@ -169,7 +169,7 @@ def create_potential_gif(xgrid,initial_distance,potential_name,outputpath):
         plt.xlabel("x (Bohrs)")
         plt.ylabel("v_ext (Hartrees)")
         plt.legend()
-        plt.savefig(f"{outputpath}/debugging/potentialplot-ID{i.zfill(4)}.png")
+        plt.savefig(f"{outputpath}/debugging/potentialplot-ID{str(i).zfill(4)}.png")
         plt.close()
 
     fp_in = f"{outputpath}/debugging/potentialplot-*.png"
