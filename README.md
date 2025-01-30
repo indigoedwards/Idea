@@ -1,4 +1,5 @@
 # Idea (Indigo's double excitation assembler)
+# Alternativly: Indigo's double electron arouser
 ![alt text](https://frogchairminecraft.co.uk/w/images/6/65/Idea_logo.png)
 ----------------------------
 A python program for all your one dimentional double excitation needs :D
