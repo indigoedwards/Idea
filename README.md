@@ -53,5 +53,7 @@ Inputs are taken from the inputs.py file. Input descriptions are below
 * distance step is the maximum and initial length of the steps during the movement phase. This is decreased if an inner product within tolerance is not found.
 * max divisions is the maximum number of step divisions that will occour before an error is raised.
 
-Please write your potential into potential.txt in python format. A sample is also provided.
+There are multiple potentials provided in potential.py. Feel free to use these as you figure out how to use this mess! There is space for new potentials to be added yourself :)
 This program works for wells that initially start split in space. Potentials should also approach 0 on the edges of the xgrid. 
+
+Have fun!!
