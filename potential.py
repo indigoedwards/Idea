@@ -109,7 +109,26 @@ def potential(x,d,potential_name):
         return arr1+arr2
     
     if potential_name == "trapezoid":
-        return
+        arr1 = np.zeros_like(x)
+        arr2 = np.zeros_like(x)
+
+        condition1= ((d - 1) <= x )& ((d+1) >= x)
+        condition2= ((d - 2) <= x) & ((d-1) >= x)
+        condition3= ((d + 1) <= x) & ((d+2) >= x)
+
+        arr1[condition1] = -4
+        arr1[condition2] = -4*(x[condition2]-d+2)
+        arr1[condition3] = 4*(x[condition3]-d-2)
+
+        condition1= ((-d - 1) <= x) & ((-d+1) >= x)
+        condition2= ((-d - 2) <= x) & ((-d-1) >= x)
+        condition3= ((-d + 1) <= x) & ((-d+2) >= x)
+
+        arr2[condition1] = -4
+        arr2[condition2] = -4*(x[condition2]+d+2)
+        arr2[condition3] = 4*(x[condition3]+d-2)
+
+        return arr1+arr2
     
     if potential_name == "cosine":
         # Initialize result array with zeros
@@ -134,22 +153,55 @@ def potential(x,d,potential_name):
         return
     
     if potential_name == "circular":
-        return
+        arr1 = np.zeros_like(x)
+        arr2 = np.zeros_like(x)
+
+        condition1= (d-4<=x) & (d+4>=x)
+        condition2= (-d-4<=x) & (-d+4>=x)
+
+        arr1[condition1] = -np.abs(np.sqrt((16-(x[condition1]-d)**2)))
+        arr2[condition2] = -np.abs(np.sqrt((16-(x[condition2]+d)**2)))
+        return arr1+arr2
     
     if potential_name == "house":
-        return
+        arr1 = np.zeros_like(x)
+        arr2 = np.zeros_like(x)
+
+        condition1 = (d<=x) & (x<=d+2)
+        condition2 = (d-2<=x) & (x<=d)
+
+        arr1[condition1] = (x[condition1]-d-2)-4
+        arr1[condition2] = -(x[condition2]-d+2)-4
+
+        condition1 = (-d<=x) & (x<=-d+2)
+        condition2 = (-d-2<=x) & (x<=-d)
+
+        arr2[condition1] = (x[condition1]+d-2)-4
+        arr2[condition2] = -(x[condition2]+d+2)-4
+
+        return arr1+arr2
     
     if potential_name == "r-triangle":
-        return
+        arr1 = np.zeros_like(x)
+        arr2 = np.zeros_like(x)
+
+        condition1 = (d-2<=x) & (x<=d+2)
+        condition2 = (-d-2<=x) & (x <= -d+2)
+
+        arr1[condition1] = (2/3)*(x[condition1]-d-2)
+        arr2[condition2] = (2/3)*(x[condition2]+d-2)
+
+        return arr1 + arr2
     
     if potential_name == "psuedo":
         return
     
     if potential_name == "gaussian2":
-        return
+        return (-8*np.exp(-((x-d)**2)/10) - 8.005*np.exp(-((x+d)**2)/10))
+        
     
     if potential_name == "gaussian3":
-        return
+        return (-2*np.exp(-((x-d)**2)/10) - 2.005*np.exp(-((x+d)**2)/10))
     
     if potential_name == "gaussian4":
         return

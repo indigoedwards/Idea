@@ -10,7 +10,7 @@ from potential import *
 
 
 xgrid = np.linspace(-20,20,300)
-potential_name = "hookes"
+potential_name = "gaussian3"
 debugging = True #If true, outputs inner product grids for every state generated, even if rejected.
 doubleexcitation = 29 #set if you know initial excitation, otherwise set to 0.
 find_startpoint = 5 #If doubleexcitation=0, only excitations above this value will be searched. If doubleexcitation is known, set to 0.
