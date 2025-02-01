@@ -3,7 +3,7 @@ import numpy as np
 import scipy as sp
 import matplotlib.pyplot as plt
 import datetime
-from find import save_density
+from save_observables import save_density
 
 #function to determine if a density contains two electons, each in their first state.
 #INPUTS:    system of state being checked
