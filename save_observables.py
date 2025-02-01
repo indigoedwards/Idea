@@ -61,9 +61,19 @@ def save_innerprodgrid(innerprodgrid,olddistance,newdistance,outputpath):
     #for (j,i),label in np.ndenumerate(innerprodgrid):
     #    ax.text(i,j,round(label,2),ha="center", va="center")
     fig.colorbar(im,label="Inner product",boundaries=np.linspace(0, 1, 11))
-    plt.savefig(f"{outputpath}/debugging/innerprod-D{newdistance}.png")
+    plt.savefig(f"{outputpath}/debugging/innerprod-D{str(newdistance)}.png")
     plt.close()
-    pickle.dumps(innerprodgrid,f"{outputpath}/debugging/innerprod-D{newdistance}.pkl")
+    pickle.dumps(innerprodgrid,f"{outputpath}/debugging/innerprod-D{str(newdistance)}.pkl")
 
     return
     
+def save_density(state,excitation,system,outputpath):
+    plt.plot(system.x, idea.observables.density(system, state=state), "m-", label="Charge Density")
+    plt.plot(system.x, system.v_ext, "g--", label="Potential")
+    plt.xlabel("x (Bohrs)")
+    plt.ylabel("v_ext / charge density")
+    plt.title(f"Finding DE, excitation {excitation}")
+    plt.legend()
+    plt.savefig(f"{outputpath}/debugging/Density-E{str(excitation).zfill(4)}")
+    plt.close()
+    return

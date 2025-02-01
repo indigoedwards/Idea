@@ -30,7 +30,7 @@ if job == "assemble":
 elif job == "find":
     v_int = idea.interactions.softened_interaction(xgrid)
     system = idea.system.System(xgrid,potential(xgrid,initial_distance,potential_name),v_int,electrons="uu")
-    print(f"Double excitation found at excitation {finddoubleexcitation(system,sensitivity,limit,find_startpoint)}",flush=True)
+    print(f"Double excitation found at excitation {finddoubleexcitation(system,sensitivity,limit,find_startpoint,outputpath)}",flush=True)
 
 elif job == "plotpotential":
     v_int = idea.interactions.softened_interaction(xgrid)
