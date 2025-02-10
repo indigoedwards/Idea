@@ -26,7 +26,7 @@ import sys
 # if yes continue, if no generate state halfway between this state and last state
 
 
-def assemble(xgrid,potential_name,debugging,find_startpoint,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,electronconfig,maxdivisions,outputpath):
+def assemble(xgrid,potential_name,debugging,find_startpoint,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,maxdivisions,electronconfig,outputpath):
 
     #initialise outputs
     num_total = 1
