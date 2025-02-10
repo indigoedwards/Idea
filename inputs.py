@@ -21,5 +21,6 @@ abovedouble = 5 #number of excitations above the double excitation that will be 
 innerprod_tolerence = 0.1 #Tolerence for accepting states, e.g. tol=0.1 will accept states that has an inner product >0.9
 distance_step = 0.25 #default distance steps
 maxdivisions = 10 #max number of step divisions before the assembler gives up
+electronconfig = "uu" #spin configuration of the electrons
 outputpath = "../output"
 job = "plotpotential" #"assemble" #"find" #"plotpotential"
