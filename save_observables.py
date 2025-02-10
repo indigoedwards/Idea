@@ -63,7 +63,9 @@ def save_innerprodgrid(innerprodgrid,olddistance,newdistance,outputpath):
     fig.colorbar(im,label="Inner product",boundaries=np.linspace(0, 1, 11))
     plt.savefig(f"{outputpath}/debugging/innerprod-D{str(newdistance)}.png")
     plt.close()
-    pickle.dumps(innerprodgrid,f"{outputpath}/debugging/innerprod-D{str(newdistance)}.pkl")
+    file = open(f"{outputpath}/debugging/innerprod-D{str(newdistance)}.pkl","wb")
+    pickle.dump(innerprodgrid,file)
+    file.close()
 
     return
     
