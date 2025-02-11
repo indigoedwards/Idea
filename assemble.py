@@ -40,7 +40,7 @@ def assemble(xgrid,potential_name,debugging,find_startpoint,doubleexcitation,ini
 
     #if no initial excitation specified, find it for the initial distance.
     if doubleexcitation == 0:
-        doubleexcitation = finddoubleexcitation(initial_system,sensitivity,limit,find_startpoint)
+        doubleexcitation = finddoubleexcitation(initial_system,sensitivity,limit,find_startpoint,outputpath)
 
     maxexcitation_gen = doubleexcitation + abovedouble
     

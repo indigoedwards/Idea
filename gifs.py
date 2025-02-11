@@ -20,7 +20,7 @@ def gif_wavefunctions(outputpath):
         img = next(imgs)
         # https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html#gif
         img.save(fp=fp_out, format='GIF', append_images=imgs,
-                save_all=True, duration=100, loop=0)
+                save_all=True, duration=400, loop=0)
     return
         
 def gif_densities(outputpath):
@@ -35,7 +35,7 @@ def gif_densities(outputpath):
         img = next(imgs)
         # https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html#gif
         img.save(fp=fp_out, format='GIF', append_images=imgs,
-                save_all=True, duration=100, loop=0)
+                save_all=True, duration=400, loop=0)
     return
 
 def gif_innerproducts(outputpath):
@@ -50,7 +50,7 @@ def gif_innerproducts(outputpath):
         img = next(imgs)
         # https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html#gif
         img.save(fp=fp_out, format='GIF', append_images=imgs,
-                save_all=True, duration=100, loop=0)
+                save_all=True, duration=400, loop=0)
     return
 
 def energy_graph(outputpath):
@@ -66,5 +66,5 @@ def energy_graph(outputpath):
         plt.gca().invert_xaxis()
         plt.xlabel("Distance from origin (Bohrs)")
         plt.ylabel("Energy of double excitation (Hartrees)")
-        plt.savefig("energies.png")
+        plt.savefig(f"{outputpath}/energies.png")
         return
