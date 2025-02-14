@@ -1,4 +1,5 @@
 # Idea (Indigo's double excitation assembler)
+# If you are uncool its InDEX (Indigo's Double Electron eXciter)
 ![alt text](https://indigoedwards.org/otherimages/idealogo.png)
 ----------------------------
 A python program for all your one dimentional double excitation needs :D
