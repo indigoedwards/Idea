@@ -1,6 +1,6 @@
 #!/bin/sh
-#SBATCH --job-name=indigo-Idea               # Job name
-#SBATCH --output=../output-gaussian1/log-gaussian1.txt           # Standard out and error log
+#SBATCH --job-name=cosine-indigo-Idea               # Job name
+#SBATCH --output=./log-cosine.txt           # Standard out and error log
 #SBATCH --mail-type=ALL                   # Specify when to mail (NONE, BEGIN, END, FAIL, ALL)
 #SBATCH --mail-user=jcre500@york.ac.uk         # NB change uid to your username if wanting to send mail
 
