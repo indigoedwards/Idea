@@ -3,12 +3,12 @@ import glob
 import shutil
 
 def clearoutputs(output_filepath):
-    is_file_path = os.path.isdir(name)
+    is_file_path = os.path.isdir(output_filepath)
     if is_file_path:
         print("file path already exists - generating new path")
         while is_file_path:
             output_filepath = output_filepath+"_new"
-            is_file_path = os.path.isdir(name)
+            is_file_path = os.path.isdir(output_filepath)
     
     os.makedirs(f"{output_filepath}")
     
