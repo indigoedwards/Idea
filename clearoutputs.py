@@ -21,4 +21,5 @@ def clearoutputs(output_filepath):
     f = open(f"{output_filepath}/energies.txt", "x")
     
     print(f"working directory is now {output_filepath}")
+    return output_filepath
 

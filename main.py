@@ -12,7 +12,7 @@ import sys
 import matplotlib.pyplot as plt
 from inputs import xgrid,potential_name,debugging,find_startpoint,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,maxdivisions,electronconfig,outputpath,job
 
-clearoutputs(outputpath)
+outputpath = clearoutputs(outputpath)
 print(printtitle(),flush=True)
 print("-----------------------------------------------------------------------------------",flush=True)
 
