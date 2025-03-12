@@ -10,14 +10,14 @@ from title import printtitle
 import numpy as np
 import sys
 import matplotlib.pyplot as plt
-from inputs import xgrid,potential_name,debugging,find_startpoint,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,maxdivisions,electronconfig,outputpath,job
+from inputs import xgrid,potential_name,debugging,find_startpoint,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,maxdivisions,electronconfig,outputpath,job,non_interacting,hartree_fock,natural,orbital_max_excitation,naturaltol
 
 outputpath = clearoutputs(outputpath)
 print(printtitle(),flush=True)
 print("-----------------------------------------------------------------------------------",flush=True)
 
 if job == "assemble":
-    excitation, numaccepted, numrejected, numtotal = assemble(xgrid,potential_name,debugging,find_startpoint,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,maxdivisions,electronconfig,outputpath)
+    excitation, numaccepted, numrejected, numtotal = assemble(xgrid,potential_name,debugging,find_startpoint,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,maxdivisions,electronconfig,outputpath,non_interacting,hartree_fock,natural,orbital_max_excitation,naturaltol)
     print(f"Final excitation number: {excitation}",flush=True)
     print(f"Total states generated: {numtotal}",flush=True)
     print(f"States accepted: {numaccepted}",flush=True)

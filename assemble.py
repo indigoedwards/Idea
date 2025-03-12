@@ -6,6 +6,7 @@ from find import finddoubleexcitation
 from save_observables import save_observables
 from potential import potential
 from save_observables import save_innerprodgrid
+from orbitals import orbitals
 import datetime
 import sys
 
@@ -26,7 +27,7 @@ import sys
 # if yes continue, if no generate state halfway between this state and last state
 
 
-def assemble(xgrid,potential_name,debugging,find_startpoint,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,maxdivisions,electronconfig,outputpath):
+def assemble(xgrid,potential_name,debugging,find_startpoint,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,maxdivisions,electronconfig,outputpath,non_interacting,hartree_fock,natural,orbital_max_excitation,naturaltol):
 
     #initialise outputs
     num_total = 1
@@ -101,6 +102,10 @@ def assemble(xgrid,potential_name,debugging,find_startpoint,doubleexcitation,ini
                 state_id = state_id + 1
                 doubleexcitation = de_innerprod_index
                 save_observables(state_new,system_new,doubleexcitation,distance_new,distance_old,outputpath,state_id,innergrid_old_new)
+                ni,hf,nat = orbitals(non_interacting,hartree_fock,natural,state_new[...,doubleexcitation],system_new,state_id,distance_new,electronconfig,orbital_max_excitation,naturaltol,outputpath)
+                print(f"{datetime.datetime.now()}: Non-interacting completeness: {ni}%")
+                print(f"{datetime.datetime.now()}: Hartree-Fock completeness: {hf}%")
+                print(f"{datetime.datetime.now()}: Natural Orbitals completeness: {nat}%")
                 system_old = system_new
                 state_old = state_new
                 del state_new

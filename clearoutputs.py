@@ -18,6 +18,10 @@ def clearoutputs(output_filepath):
     os.makedirs(f"{output_filepath}/innerprods")
     os.makedirs(f"{output_filepath}/densities")
     os.makedirs(f"{output_filepath}/debugging")
+    os.makedirs(f"{output_filepath}/orbitals")
+    os.makedirs(f"{output_filepath}/orbitals/non-interacting")
+    os.makedirs(f"{output_filepath}/orbitals/hartree-fock")
+    os.makedirs(f"{output_filepath}/orbitals/natural")
     f = open(f"{output_filepath}/energies.txt", "x")
     
     print(f"working directory is now {output_filepath}")

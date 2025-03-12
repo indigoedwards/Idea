@@ -22,5 +22,11 @@ innerprod_tolerence = 0.1 #Tolerence for accepting states, e.g. tol=0.1 will acc
 distance_step = 0.25 #default distance steps
 maxdivisions = 30 #max number of step divisions before the assembler gives up
 electronconfig = "uu" #spin configuration of the electrons
-outputpath = "../output-cosine"
-job = "assemble" #"assemble" #"find" #"plotpotential"
+outputpath = "../output"
+job = "plotpotential" #"assemble" #"find" #"plotpotential"
+
+non_interacting = True
+hartree_fock = True
+natural = True
+orbital_max_excitation = 10
+naturaltol = 0.000001
