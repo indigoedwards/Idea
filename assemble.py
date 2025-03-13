@@ -53,6 +53,15 @@ def assemble(xgrid,potential_name,debugging,find_startpoint,doubleexcitation,ini
     state_old = idea.methods.interacting.solve(system_old, k=maxexcitation_gen, stopprint=True, allstates=True)
     state_id = 1
     save_observables(state_old,system_old,doubleexcitation,distance_old,distance_old,outputpath,state_id,0)
+    state_temp = state_old
+    state_temp.full = state_temp.allfull[...,doubleexcitation]
+    ni,hf,nat = orbitals(non_interacting,hartree_fock,natural,state_temp,system_old,state_id,distance_old,electronconfig,orbital_max_excitation,naturaltol,outputpath)
+    print(f"     Non-interacting completeness: {ni*100}%")
+    print(f"     Hartree-Fock completeness: {hf*100}%")
+    print(f"     Natural Orbitals completeness: {nat*100}%")
+    sys.stdout.flush()    
+
+
     n = 1
 
     #Begin moving closer
@@ -88,10 +97,12 @@ def assemble(xgrid,potential_name,debugging,find_startpoint,doubleexcitation,ini
                 state_id = state_id + 1
                 doubleexcitation = de_innerprod_index
                 save_observables(state_new,system_new,doubleexcitation,distance_new,distance_old,outputpath,state_id,innergrid_old_new)
-                ni,hf,nat = orbitals(non_interacting,hartree_fock,natural,state_new[...,doubleexcitation],system_new,state_id,distance_new,electronconfig,orbital_max_excitation,naturaltol,outputpath)
-                print(f"{datetime.datetime.now()}: Non-interacting completeness: {ni}%")
-                print(f"{datetime.datetime.now()}: Hartree-Fock completeness: {hf}%")
-                print(f"{datetime.datetime.now()}: Natural Orbitals completeness: {nat}%")
+                state_temp = state_new
+                state_temp.full = state_temp.allfull[...,doubleexcitation]
+                ni,hf,nat = orbitals(non_interacting,hartree_fock,natural,state_temp,system_new,state_id,distance_new,electronconfig,orbital_max_excitation,naturaltol,outputpath)
+                print(f"     Non-interacting completeness: {ni*100}%")
+                print(f"     Hartree-Fock completeness: {hf*100}%")
+                print(f"     Natural Orbitals completeness: {nat*100}%")
                 sys.stdout.flush()
                 system_old = system_new
                 state_old = state_new
@@ -107,10 +118,12 @@ def assemble(xgrid,potential_name,debugging,find_startpoint,doubleexcitation,ini
                 state_id = state_id + 1
                 doubleexcitation = de_innerprod_index
                 save_observables(state_new,system_new,doubleexcitation,distance_new,distance_old,outputpath,state_id,innergrid_old_new)
-                ni,hf,nat = orbitals(non_interacting,hartree_fock,natural,state_new[...,doubleexcitation],system_new,state_id,distance_new,electronconfig,orbital_max_excitation,naturaltol,outputpath)
-                print(f"{datetime.datetime.now()}: Non-interacting completeness: {ni}%")
-                print(f"{datetime.datetime.now()}: Hartree-Fock completeness: {hf}%")
-                print(f"{datetime.datetime.now()}: Natural Orbitals completeness: {nat}%")
+                state_temp = state_new
+                state_temp.full = state_temp.allfull[...,doubleexcitation]
+                ni,hf,nat = orbitals(non_interacting,hartree_fock,natural,state_temp,system_new,state_id,distance_new,electronconfig,orbital_max_excitation,naturaltol,outputpath)
+                print(f"     Non-interacting completeness: {ni*100}%")
+                print(f"     Hartree-Fock completeness: {hf*100}%")
+                print(f"     Natural Orbitals completeness: {nat*100}%")
                 sys.stdout.flush()
                 system_old = system_new
                 state_old = state_new

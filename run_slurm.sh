@@ -1,6 +1,6 @@
 #!/bin/sh
-#SBATCH --job-name=cosine-indigo-Idea               # Job name
-#SBATCH --output=./log-cosine.txt           # Standard out and error log
+#SBATCH --job-name=gaussian1_ud-indigo-Idea               # Job name
+#SBATCH --output=./log-orbitaltest-ud.txt           # Standard out and error log
 #SBATCH --mail-type=ALL                   # Specify when to mail (NONE, BEGIN, END, FAIL, ALL)
 #SBATCH --mail-user=jcre500@york.ac.uk         # NB change uid to your username if wanting to send mail
 
@@ -10,9 +10,10 @@
 #SBATCH --mem=32G
 
 #customise these according to job size and time required:
-#SBATCH --ntasks=13                         # Run 4 tasks...
+#SBATCH --ntasks=40                         # Run 4 tasks...
 #SBATCH --cpus-per-task=1                  # ...with each task using 1 core
-#SBATCH --time=100:00:00                    # Time limit hrs:min:sec
+#SBATCH --time=24:00:00                    # Time limit hrs:min:sec
+#SBATCH --exclusive
 #actual executable info now:
 
 #tell user what is going on:
