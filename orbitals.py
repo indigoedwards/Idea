@@ -7,13 +7,42 @@ import scipy as sp
 import datetime
 
 #find number of nodes in a single particle wavefunction
-def nodes(state):
-    nodes = 0
+def nodes(state,tol,dx):
     stateabs = abs(state)
-    for i in range(1,len(state)-1):
-        if (stateabs[i-1]>stateabs[i]+0.01 and stateabs[i+1]>stateabs[i]+0.01):
-            nodes=nodes+1
-    return nodes
+    statesecond = 10*np.gradient(np.gradient(stateabs,dx),dx)
+    big = max(statesecond)
+    baseline = statesecond[10]*10
+    idxs = []
+    c = 0
+    print(sp.signal.find_peaks(statesecond)[0])
+    while big>tol:
+        print(big)
+        idx = list(statesecond).index(big)
+        left = check_left(idx,statesecond,baseline)
+        right = check_right(idx,statesecond,baseline)
+        statesecond[left:right]=baseline
+        c+=1
+        idxs.append(idx)
+        big = max(statesecond)
+    return c#len(sp.signal.find_peaks(statesecond,threshold=0.005)[0])
+    
+def check_left(idx,arr,baseline):
+    go = True
+    while go:
+        if arr[idx] > baseline and idx>0:
+            idx-=1
+        else:
+            go = False
+    return idx
+    
+def check_right(idx,arr,baseline):
+    go = True
+    while go:
+        if arr[idx] > baseline and idx<len(arr):
+            idx+=1
+        else:
+            go = False
+    return idx
 
 #from single particle wavefunctions, calculate the basis sets either by hartree product or slater determinant.
 def calculate_basis(state,single_states_a,single_states_b,electron_config,system):
@@ -185,7 +214,7 @@ def orbitals(non_interacting,hartree_fock,natural,state,system,stateid,distance,
         single_sorted = np.zeros((len(single),len(system.x)))
         single_nodes = []
         for i in range(0,len(single)):
-            single_nodes.append(nodes(single[i]))
+            single_nodes.append(nodes(single[i],naturaltol,system.x[0]-system.x[1]))
         argsort_nodes = np.argsort(single_nodes)
         for i in range(0,len(single)):
             single_sorted[i] = single[argsort_nodes[i]]
@@ -232,4 +261,4 @@ def orbitals(non_interacting,hartree_fock,natural,state,system,stateid,distance,
         plt.savefig(f"{outputpath}/orbitals/natural/plot_single_orbitals_a_ID{str(stateid-1).zfill(4)}.png")
         plt.close()
 
-    return ni_completeness, hf_completeness, ni_completeness
+    return ni_completeness, hf_completeness, n_completeness
