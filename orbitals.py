@@ -87,7 +87,7 @@ def orbitals(state,system,stateid,distance,electron_config,orbital_max_excitatio
         plt.legend()
         plt.xlabel("Position (Bohrs)")
         plt.title(f"hartree-fock orbitals, distance={distance}")
-    plt.plot(system.v_ext,"g--",label="potential")
+    plt.plot(system.x,system.v_ext,"g--",label="potential")
     plt.savefig(f"{outputpath}/orbitals/hartree-fock/plot_single_orbitals_a_ID{str(stateid-1).zfill(4)}.png")
     plt.close()
 
@@ -96,7 +96,7 @@ def orbitals(state,system,stateid,distance,electron_config,orbital_max_excitatio
         plt.legend()
         plt.xlabel("Position (Bohrs)")
         plt.title(f"hartree-fock orbitals, distance={distance}")
-    plt.plot(system.v_ext,"g--",label="potential")
+    plt.plot(system.x,system.v_ext,"g--",label="potential")
     plt.savefig(f"{outputpath}/orbitals/hartree-fock/plot_single_orbitals_a_ID{str(stateid-1).zfill(4)}.png")
     plt.close()
 

@@ -40,7 +40,7 @@ def assemble(xgrid,potential_name,debugging,find_startpoint,doubleexcitation,ini
     initial_system = idea.system.System(xgrid,initial_potential,v_int,electrons=electronconfig)
 
     #if no initial excitation specified, find it for the initial distance.
-    if doubleexcitation == 0:
+    if doubleexcitation == -1:
         doubleexcitation = finddoubleexcitation(initial_system,sensitivity,limit,find_startpoint,outputpath)
 
     maxexcitation_gen = doubleexcitation + abovedouble

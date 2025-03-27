@@ -12,7 +12,7 @@ from potential import *
 xgrid = np.linspace(-20,20,300)
 potential_name = "gaussian1"
 debugging = True #If true, outputs inner product grids for every state generated, even if rejected.
-doubleexcitation = 0 #set if you know initial excitation, otherwise set to 0.
+doubleexcitation = 0 #set if you know initial excitation, otherwise set to -1.
 find_startpoint = 5 #If doubleexcitation=0, only excitations above this value will be searched. If doubleexcitation is known, set to 0.
 initial_distance = 10 #initial distance of the wells from 0.
 sensitivity = 5 #sensitivity of peak finder
