@@ -8,7 +8,10 @@ import pickle
 def save_observables(state,system,excitation,newdistance,olddistance,outputpath,stateid,innerprodgrid):
 
     #Save all states
-    idea.state.save_many_body_state(state,f"{outputpath}/states/ID{str(stateid).zfill(4)}.state")
+    statetemp = state
+    statetemp.full = statetemp.allfull[...,excitation]
+    statetemp.allfull = 0
+    idea.state.save_many_body_state(statetemp,f"{outputpath}/states/ID{str(stateid).zfill(4)}.state")
 
     #make wavefunction plot
     plt.imshow(state.allfull[...,excitation][:,0,:,0], cmap="seismic", vmax=0.75, vmin=-0.75, extent=[-20, 20, 20, -20], aspect=1)
