@@ -22,7 +22,9 @@ def clearoutputs(output_filepath):
     os.makedirs(f"{output_filepath}/orbitals/non-interacting")
     os.makedirs(f"{output_filepath}/orbitals/hartree-fock")
     os.makedirs(f"{output_filepath}/orbitals/natural")
+    os.makedirs(f"{output_filepath}/states")
     f = open(f"{output_filepath}/energies.txt", "x")
+
     
     print(f"working directory is now {output_filepath}")
     return output_filepath

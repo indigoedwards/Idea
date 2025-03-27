@@ -14,9 +14,8 @@ def nodes(state,tol,dx):
     baseline = statesecond[10]*10
     idxs = []
     c = 0
-    print(sp.signal.find_peaks(statesecond)[0])
+    #print(sp.signal.find_peaks(statesecond)[0])
     while big>tol:
-        print(big)
         idx = list(statesecond).index(big)
         left = check_left(idx,statesecond,baseline)
         right = check_right(idx,statesecond,baseline)
@@ -202,7 +201,7 @@ def orbitals(non_interacting,hartree_fock,natural,state,system,stateid,distance,
         single = []
         coeffs_accept = []
         for i in range(0,len(system.x)):
-            if coeffs[i]>naturaltol:
+            if coeffs[i]>0.00000000001:
                 single.append(orbital[:,i])
                 coeffs_accept.append(coeffs[i])
 
