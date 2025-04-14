@@ -20,7 +20,7 @@ if job == "assemble":
     excitation, numaccepted, numrejected, numtotal = assemble(xgrid,potential_name,debugging,find_startpoint,doubleexcitation,initial_distance,sensitivity,limit,abovedouble,innerprod_tolerence,distance_step,maxdivisions,electronconfig,outputpath,non_interacting,hartree_fock,natural,orbital_max_excitation,naturaltol)
     print(f"Final excitation number: {excitation}",flush=True)
     print(f"Total states generated: {numtotal}",flush=True)
-    print(f"States accepted: {numaccepted}",flush=True)
+    print(f"States accepted: {numaccepted+1}",flush=True)
     print(f"States rejected: {numrejected}",flush=True)
     gif_wavefunctions(outputpath)
     gif_densities(outputpath)

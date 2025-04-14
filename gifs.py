@@ -62,7 +62,7 @@ def energy_graph(outputpath):
 
         data = data.transpose()
 
-        plt.plot(data[0],data[2])
+        plt.plot(data[1],data[3])
         plt.gca().invert_xaxis()
         plt.xlabel("Distance from origin (Bohrs)")
         plt.ylabel("Energy of double excitation (Hartrees)")

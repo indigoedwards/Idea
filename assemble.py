@@ -116,7 +116,7 @@ def assemble(xgrid,potential_name,debugging,find_startpoint,doubleexcitation,ini
                 save_observables(state_new,system_new,doubleexcitation,distance_new,distance_old,outputpath,state_id,innergrid_old_new)
                 state_temp = state_new
                 state_temp.full = state_temp.allfull[...,doubleexcitation]
-                ni,hf,nat = orbitals(state_temp,system_new,state_id,distance_new,electronconfig,orbital_max_excitation,outputpath)
+                hf = orbitals(state_temp,system_new,state_id,distance_new,electronconfig,orbital_max_excitation,outputpath)
                 print(f"     Hartree-Fock completeness: {hf*100}%")
                 sys.stdout.flush()
                 system_old = system_new

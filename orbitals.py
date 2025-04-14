@@ -48,7 +48,7 @@ def orbitals(state,system,stateid,distance,electron_config,orbital_max_excitatio
 
     #create single particle orbitals for a hartree-fock system
     max_excitation = 10
-    teststate = idea.methods.hartree_fock.solve(system,k=0,silent=True)
+    teststate = idea.methods.hartree_fock.solve(system,k=0,silent=False)
     single_states_a = np.zeros((max_excitation+1,300),dtype=np.float32)
     single_states_b = np.zeros((max_excitation+1,300),dtype=np.float32)
     for i in range(0,max_excitation+1):
