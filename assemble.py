@@ -55,7 +55,7 @@ def assemble(xgrid,potential_name,debugging,find_startpoint,doubleexcitation,ini
     save_observables(state_old,system_old,doubleexcitation,distance_old,distance_old,outputpath,state_id,0)
     state_temp = state_old
     state_temp.full = state_temp.allfull[...,doubleexcitation]
-    hf = orbitals(state_temp,system_old,state_id,distance_old,electronconfig,orbital_max_excitation,outputpath)
+    hf = orbitals(state_temp,system_old,state_id,distance_old,electronconfig,orbital_max_excitation,outputpath,potential_name,xgrid)
     print(f"     Hartree-Fock completeness: {hf*100}%")
     sys.stdout.flush()    
 
@@ -97,7 +97,7 @@ def assemble(xgrid,potential_name,debugging,find_startpoint,doubleexcitation,ini
                 save_observables(state_new,system_new,doubleexcitation,distance_new,distance_old,outputpath,state_id,innergrid_old_new)
                 state_temp = state_new
                 state_temp.full = state_temp.allfull[...,doubleexcitation]
-                hf = orbitals(state_temp,system_new,state_id,distance_new,electronconfig,orbital_max_excitation,outputpath)
+                hf = orbitals(state_temp,system_new,state_id,distance_new,electronconfig,orbital_max_excitation,outputpath,potential_name,xgrid)
                 print(f"     Hartree-Fock completeness: {hf*100}%")
                 sys.stdout.flush()
                 system_old = system_new
@@ -116,7 +116,7 @@ def assemble(xgrid,potential_name,debugging,find_startpoint,doubleexcitation,ini
                 save_observables(state_new,system_new,doubleexcitation,distance_new,distance_old,outputpath,state_id,innergrid_old_new)
                 state_temp = state_new
                 state_temp.full = state_temp.allfull[...,doubleexcitation]
-                hf = orbitals(state_temp,system_new,state_id,distance_new,electronconfig,orbital_max_excitation,outputpath)
+                hf = orbitals(state_temp,system_new,state_id,distance_new,electronconfig,orbital_max_excitation,outputpath,potential_name,xgrid)
                 print(f"     Hartree-Fock completeness: {hf*100}%")
                 sys.stdout.flush()
                 system_old = system_new

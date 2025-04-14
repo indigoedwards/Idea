@@ -28,5 +28,5 @@ job = "assemble" #"assemble" #"find" #"plotpotential"
 non_interacting = True
 hartree_fock = True
 natural = True
-orbital_max_excitation = 10
+orbital_max_excitation = 20
 naturaltol = 5

@@ -2,6 +2,7 @@ import iDEA as idea
 import numpy as np
 import pickle
 from innerprodgrid import innerproduct
+from potential import potential
 import matplotlib.pyplot as plt
 import scipy as sp
 import datetime
@@ -40,7 +41,7 @@ def calculate_basis(state,single_states_a,single_states_b,electron_config,system
     return basis_set, coefficients, completeness
 
 #get the basis set and coeffcients 
-def orbitals(state,system,stateid,distance,electron_config,orbital_max_excitation,outputpath):
+def orbitals(state,system,stateid,distance,electron_config,orbital_max_excitation,outputpath,potential_name,xgrid):
     orbital_max_excitation = int(orbital_max_excitation)
     hf_completeness = 0
     print(f"{datetime.datetime.now()}: Generating Orbital Basis Sets")
@@ -48,7 +49,23 @@ def orbitals(state,system,stateid,distance,electron_config,orbital_max_excitatio
 
     #create single particle orbitals for a hartree-fock system
     max_excitation = 10
-    teststate = idea.methods.hartree_fock.solve(system,k=0,silent=False)
+
+    xgrid = np.linspace(-20,20,300)
+    v_int = idea.interactions.softened_interaction(xgrid)
+    v_ext_what = potential(xgrid,distance,potential_name)
+    v_ext = (-4*np.exp(-((xgrid-distance)**2)/10) - 4.005*np.exp(-((xgrid-distance)**2)/10)) #gaussian1
+    #print(np.sum(v_ext-v_ext_what))
+
+    #this bodge works
+    testsystem = idea.system.System(xgrid,v_ext,v_int,electrons=electron_config)
+    teststate = idea.methods.hartree_fock.solve(testsystem,k=0)
+
+    #doesnt????
+    #testsystem = idea.system.System(xgrid,v_ext_what,v_int,electrons=electron_config)
+    #teststate = idea.methods.hartree_fock.solve(testsystem,k=0)
+
+    #what the actual fuck im so confused
+
     single_states_a = np.zeros((max_excitation+1,300),dtype=np.float32)
     single_states_b = np.zeros((max_excitation+1,300),dtype=np.float32)
     for i in range(0,max_excitation+1):
