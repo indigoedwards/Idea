@@ -12,7 +12,7 @@
 #customise these according to job size and time required:
 #SBATCH --ntasks=40                         # Run 4 tasks...
 #SBATCH --cpus-per-task=1                  # ...with each task using 1 core
-#SBATCH --time=1:00:00                    # Time limit hrs:min:sec
+#SBATCH --time=0:30:00                    # Time limit hrs:min:sec
 #actual executable info now:
 
 #tell user what is going on:

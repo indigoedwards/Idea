@@ -14,7 +14,10 @@ def save_observables(state,system,excitation,newdistance,olddistance,outputpath,
     idea.state.save_many_body_state(state,f"{outputpath}/states/ID{str(stateid).zfill(4)}.state")
 
     #make wavefunction plot
-    plt.imshow(state.allfull[...,excitation][:,0,:,0], cmap="seismic", vmax=0.75, vmin=-0.75, extent=[-20, 20, 20, -20], aspect=1)
+    if system.electrons=="uu" or system.electrons=="dd":
+    	plt.imshow(state.allfull[...,excitation][:,0,:,0], cmap="seismic", vmax=0.75, vmin=-0.75, extent=[-20, 20, 20, -20], aspect=1)
+    elif system.electrons=="ud" or system.electrons=="du":
+        plt.imshow(state.allfull[...,excitation][:,1,:,0], cmap="seismic", vmax=0.75, vmin=-0.75, extent=[-20, 20, 20, -20], aspect=1)
     plt.xlabel("x, position of electron 1 (Bohrs)")
     plt.ylabel("x', poisition of electron 2 (Bohrs)")
     plt.title(f"Distance from origin = {newdistance}, excitation {excitation}")

@@ -1,3 +1,4 @@
+
 import numpy as np
 from potential import *
 #------------------------------------------------
@@ -18,7 +19,7 @@ initial_distance = 10 #initial distance of the wells from 0.
 sensitivity = 5 #sensitivity of peak finder
 limit = 50 #excitation number limit of the double excitation finder
 abovedouble = 5 #number of excitations above the double excitation that will be generated during assembly
-innerprod_tolerence = 0.1 #Tolerence for accepting states, e.g. tol=0.1 will accept states that has an inner product >0.9
+innerprod_tolerence = 0.5 #Tolerence for accepting states, e.g. tol=0.1 will accept states that has an inner product >0.9
 distance_step = 0.25 #default distance steps
 maxdivisions = 30 #max number of step divisions before the assembler gives up
 electronconfig = "ud" #spin configuration of the electrons
