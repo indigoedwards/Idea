@@ -10,22 +10,52 @@ from potential import *
 #------------------------------------------------
 
 
+#the spacial grid that the wavefunctions are solved over. This example spans -20<x<20 with 301 gridpoints
 xgrid = np.linspace(-20,20,301)
+
+#the name of the potential that will be used, see potential.py 
 potential_name = "symgaussian"
-debugging = True #If true, outputs inner product grids for every state generated, even if rejected.
-doubleexcitation = 5 #set if you know initial excitation, otherwise set to -1.
-find_startpoint = 0 #If doubleexcitation=0, only excitations above this value will be searched. If doubleexcitation is known, set to 0.
-initial_distance = 5 #initial distance of the wells from 0.
-sensitivity = 5 #sensitivity of peak finder
-limit = 50 #excitation number limit of the double excitation finder
-abovedouble = 5 #number of excitations above the double excitation that will be generated during assembly
-innerprod_tolerence = 0.5 #Tolerence for accepting states, e.g. tol=0.1 will accept states that has an inner product >0.9
-distance_step = 0.25 #default distance steps
-maxdivisions = 30 #max number of step divisions before the assembler gives up
-electronconfig = "ud" #spin configuration of the electrons
+
+#output extra info helpful for debugging, If true, outputs inner product grids for every state generated, even if rejected.
+debugging = True 
+
+#the initial excitation of the system, set to -1 if you want InDEX to identify the lowest energy double excitation
+doubleexcitation = 5
+
+#if finding double excitation, only excitations above this value will be searched. If double excitation is known, set to 0.
+find_startpoint = 0 
+
+#Initial distance of the wells from 0 in bohr. An initial distance of 5 will have the wells be separated by 10 bohr
+initial_distance = 5
+
+#Sensitivity of the double excitation peak finder. Default 5
+sensitivity = 5 
+
+#Maimum exictation number that will be searched when trying to find the lowest energy double excitation
+limit = 50
+
+#number of excitation above the target excitation that will be generated during the adiabatic movement. e.g. if state 7 is to be tracked, and abovedouble=5, the algorithm will generate states 0-12.
+abovedouble = 5
+
+#Inner product tolerance used for accepting states in the adiabatic movement. e.g. tol=0.1 will accept states that has an inner product >0.9
+innerprod_tolerence = 0.5
+
+#Initial distance step in bohr
+distance_step = 0.25 
+
+#max number of step divisions before the assembler gives up
+maxdivisions = 30
+
+#spin configuration of the electrons
+electronconfig = "ud"
+
+#The path for the outputs
 outputpath = "../symgaussian-ud-e5"
+
+#Select the job. plotpoential only outputs the potential plot. find only runs the double excitation finder. assemble runs the whole program, executing the adiabatic movement method.
 job = "assemble" #"assemble" #"find" #"plotpotential"
 
+#some other shit that needs sorting
 non_interacting = True
 hartree_fock = True
 natural = True
