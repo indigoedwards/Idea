@@ -66,8 +66,8 @@ def orbitals(state,system,stateid,distance,electron_config,orbital_max_excitatio
 
     #what the actual fuck im so confused
 
-    single_states_a = np.zeros((max_excitation+1,300),dtype=np.float32)
-    single_states_b = np.zeros((max_excitation+1,300),dtype=np.float32)
+    single_states_a = np.zeros((max_excitation+1,301),dtype=np.float32)
+    single_states_b = np.zeros((max_excitation+1,301),dtype=np.float32)
     for i in range(0,max_excitation+1):
         if electron_config[0] == "u":
             single_states_a[i] = teststate.up.orbitals[:,i]

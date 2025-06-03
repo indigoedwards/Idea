@@ -1,6 +1,6 @@
 #!/bin/sh
-#SBATCH --job-name=gaussian1-ud-e0               # Job name
-#SBATCH --output=./gaussian1-ud-e0.log           # Standard out and error log
+#SBATCH --job-name=symgaussian-ud-e5               # Job name
+#SBATCH --output=./symgaussian-ud-e5.log           # Standard out and error log
 #SBATCH --mail-type=ALL                   # Specify when to mail (NONE, BEGIN, END, FAIL, ALL)
 #SBATCH --mail-user=jcre500@york.ac.uk         # NB change uid to your username if wanting to send mail
 

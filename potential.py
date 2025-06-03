@@ -41,6 +41,9 @@ def potential(x,d,potential_name):
     if potential_name == "gaussian1":
         return (-4*np.exp(-((x-d)**2)/10) - 4.005*np.exp(-((x+d)**2)/10))
 
+    if potential_name == "symgaussian":
+        return (-4*np.exp(-((x-d)**2)/10) - 4*np.exp(-((x+d)**2)/10))
+
     if potential_name == "square1":
         well_depth = 4
         well_width = 5

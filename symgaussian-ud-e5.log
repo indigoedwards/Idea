@@ -1,0 +1,148 @@
+My working directory is /users/jcre500/scratch/project/generatingexcitations/Idea
+Running job on host:
+	node097.viking2.yor.alces.network at Thu May 29 16:07:46 BST 2025
+	using 40 cores
+
+working directory is now ../symgaussian-ud-e5
+
+_________ ______   _______  _______ 
+\__   __/(  __  \ (  ____ \(  ___  )
+   ) (   | (  \  )| (    \/| (   ) |
+   | |   | |   ) || (__    | (___) |
+   | |   | |   | ||  __)   |  ___  |
+   | |   | |   ) || (      | (   ) |
+___) (___| (__/  )| (____/\| )   ( |
+\_______/(______/ (_______/|/     \|
+
+-----------------------------------------------------------------------------------
+2025-05-29 16:07:49.600793: Generating initial state at distance 5, DE=5
+2025-05-29 16:07:56.792268: Generating Orbital Basis Sets
+iDEA.methods.hartree_fock.solve: convergence = 2.0, tolerance = 0.01iDEA.methods.hartree_fock.solve: convergence = 2.5613e-14, tolerance = 0.01
+     Hartree-Fock completeness: 99.97816467285156%
+2025-05-29 16:07:57.520602: Starting Movement
+2025-05-29 16:07:57.520637: Generating state at distance 4.75
+2025-05-29 16:08:03.452457: Double excitation state found at distance 4.75, Innerproduct 0.9767615438074382, DE=5
+2025-05-29 16:08:03.954566: Generating Orbital Basis Sets
+iDEA.methods.hartree_fock.solve: convergence = 2.0, tolerance = 0.01iDEA.methods.hartree_fock.solve: convergence = 2.0232e-14, tolerance = 0.01
+     Hartree-Fock completeness: 99.97859191894531%
+2025-05-29 16:08:04.650515: Generating state at distance 4.5
+2025-05-29 16:08:10.463311: Double excitation state found at distance 4.5, Innerproduct 0.9762206157271293, DE=5
+2025-05-29 16:08:11.000158: Generating Orbital Basis Sets
+iDEA.methods.hartree_fock.solve: convergence = 2.0, tolerance = 0.01iDEA.methods.hartree_fock.solve: convergence = 1.3843e-14, tolerance = 0.01
+     Hartree-Fock completeness: 99.97940826416016%
+2025-05-29 16:08:11.767107: Generating state at distance 4.25
+2025-05-29 16:08:17.760105: Double excitation state found at distance 4.25, Innerproduct 0.975190875467051, DE=5
+2025-05-29 16:08:18.254998: Generating Orbital Basis Sets
+iDEA.methods.hartree_fock.solve: convergence = 2.0, tolerance = 0.01iDEA.methods.hartree_fock.solve: convergence = 9.9587e-15, tolerance = 0.01
+     Hartree-Fock completeness: 99.98078155517578%
+2025-05-29 16:08:18.965003: Generating state at distance 4.0
+2025-05-29 16:08:24.624944: Double excitation state found at distance 4.0, Innerproduct 0.9732566509269126, DE=5
+2025-05-29 16:08:25.152436: Generating Orbital Basis Sets
+iDEA.methods.hartree_fock.solve: convergence = 2.0, tolerance = 0.01iDEA.methods.hartree_fock.solve: convergence = 1.7315e-14, tolerance = 0.01
+     Hartree-Fock completeness: 99.98310089111328%
+2025-05-29 16:08:25.912899: Generating state at distance 3.75
+2025-05-29 16:08:31.443779: Double excitation state found at distance 3.75, Innerproduct 0.9695190035231857, DE=5
+2025-05-29 16:08:31.947518: Generating Orbital Basis Sets
+iDEA.methods.hartree_fock.solve: convergence = 2.0, tolerance = 0.01iDEA.methods.hartree_fock.solve: convergence = 1.7377e-14, tolerance = 0.01
+     Hartree-Fock completeness: 99.9866943359375%
+2025-05-29 16:08:32.632337: Generating state at distance 3.5
+2025-05-29 16:08:38.745138: Double excitation state found at distance 3.5, Innerproduct 0.9615215254269228, DE=5
+2025-05-29 16:08:39.231961: Generating Orbital Basis Sets
+iDEA.methods.hartree_fock.solve: convergence = 2.0, tolerance = 0.01iDEA.methods.hartree_fock.solve: convergence = 1.655e-14, tolerance = 0.01
+     Hartree-Fock completeness: 99.9919204711914%
+2025-05-29 16:08:39.934225: Generating state at distance 3.25
+2025-05-29 16:08:45.855430: Double excitation state found at distance 3.25, Innerproduct 0.942708357733304, DE=5
+2025-05-29 16:08:46.356509: Generating Orbital Basis Sets
+iDEA.methods.hartree_fock.solve: convergence = 2.0, tolerance = 0.01iDEA.methods.hartree_fock.solve: convergence = 3.0937e-14, tolerance = 0.01
+     Hartree-Fock completeness: 99.99767303466797%
+2025-05-29 16:08:47.081152: Generating state at distance 3.0
+2025-05-29 16:08:53.081596: Double excitation state found at distance 3.0, Innerproduct 0.91540758081592, DE=6
+2025-05-29 16:08:53.578437: Generating Orbital Basis Sets
+iDEA.methods.hartree_fock.solve: convergence = 2.0, tolerance = 0.01iDEA.methods.hartree_fock.solve: convergence = 9.5221e-14, tolerance = 0.01
+     Hartree-Fock completeness: 99.99637603759766%
+2025-05-29 16:08:54.299501: Generating state at distance 2.75
+2025-05-29 16:08:59.996054: Double excitation state found at distance 2.75, Innerproduct 0.9196992890294753, DE=7
+2025-05-29 16:09:00.503192: Generating Orbital Basis Sets
+iDEA.methods.hartree_fock.solve: convergence = 2.0, tolerance = 0.01iDEA.methods.hartree_fock.solve: convergence = 2.9762e-14, tolerance = 0.01
+     Hartree-Fock completeness: 99.99528503417969%
+2025-05-29 16:09:01.208578: Generating state at distance 2.5
+2025-05-29 16:09:06.483355: Double excitation state found at distance 2.5, Innerproduct 0.9557422386459478, DE=7
+2025-05-29 16:09:07.008395: Generating Orbital Basis Sets
+iDEA.methods.hartree_fock.solve: convergence = 2.0, tolerance = 0.01iDEA.methods.hartree_fock.solve: convergence = 4.4692e-14, tolerance = 0.01
+     Hartree-Fock completeness: 99.9945068359375%
+2025-05-29 16:09:07.713592: Generating state at distance 2.25
+2025-05-29 16:09:13.081374: Double excitation state found at distance 2.25, Innerproduct 0.9541909358361904, DE=7
+2025-05-29 16:09:13.607070: Generating Orbital Basis Sets
+iDEA.methods.hartree_fock.solve: convergence = 2.0, tolerance = 0.01iDEA.methods.hartree_fock.solve: convergence = 2.2561e-14, tolerance = 0.01
+     Hartree-Fock completeness: 99.99172973632812%
+2025-05-29 16:09:14.314993: Generating state at distance 2.0
+2025-05-29 16:09:19.469209: Double excitation state found at distance 2.0, Innerproduct 0.9389688406661674, DE=7
+2025-05-29 16:09:20.001052: Generating Orbital Basis Sets
+iDEA.methods.hartree_fock.solve: convergence = 2.0, tolerance = 0.01iDEA.methods.hartree_fock.solve: convergence = 4.2458e-14, tolerance = 0.01
+     Hartree-Fock completeness: 99.98912048339844%
+2025-05-29 16:09:20.715142: Generating state at distance 1.75
+2025-05-29 16:09:25.626827: Double excitation state found at distance 1.75, Innerproduct 0.9637334184112452, DE=8
+2025-05-29 16:09:26.136765: Generating Orbital Basis Sets
+iDEA.methods.hartree_fock.solve: convergence = 2.0, tolerance = 0.01iDEA.methods.hartree_fock.solve: convergence = 1.6712e-14, tolerance = 0.01
+     Hartree-Fock completeness: 99.98880767822266%
+2025-05-29 16:09:26.832573: Generating state at distance 1.5
+2025-05-29 16:09:31.930466: Double excitation state found at distance 1.5, Innerproduct 0.9822426599610318, DE=7
+2025-05-29 16:09:32.452814: Generating Orbital Basis Sets
+iDEA.methods.hartree_fock.solve: convergence = 2.0, tolerance = 0.01iDEA.methods.hartree_fock.solve: convergence = 1.7826e-14, tolerance = 0.01
+     Hartree-Fock completeness: 99.9896469116211%
+2025-05-29 16:09:33.148723: Generating state at distance 1.25
+2025-05-29 16:09:38.250410: Double excitation state found at distance 1.25, Innerproduct 0.989886143736483, DE=7
+2025-05-29 16:09:38.764447: Generating Orbital Basis Sets
+iDEA.methods.hartree_fock.solve: convergence = 2.0, tolerance = 0.01iDEA.methods.hartree_fock.solve: convergence = 1.3548e-14, tolerance = 0.01
+     Hartree-Fock completeness: 99.9903564453125%
+2025-05-29 16:09:39.460796: Generating state at distance 1.0
+2025-05-29 16:09:44.779195: Double excitation state found at distance 1.0, Innerproduct 0.9940249252828104, DE=7
+2025-05-29 16:09:45.322807: Generating Orbital Basis Sets
+iDEA.methods.hartree_fock.solve: convergence = 2.0, tolerance = 0.01iDEA.methods.hartree_fock.solve: convergence = 1.0858e-14, tolerance = 0.01
+     Hartree-Fock completeness: 99.99040222167969%
+2025-05-29 16:09:46.022762: Generating state at distance 0.75
+2025-05-29 16:09:51.072053: Double excitation state found at distance 0.75, Innerproduct 0.996663824346708, DE=7
+2025-05-29 16:09:51.577944: Generating Orbital Basis Sets
+iDEA.methods.hartree_fock.solve: convergence = 2.0, tolerance = 0.01iDEA.methods.hartree_fock.solve: convergence = 1.2888e-14, tolerance = 0.01
+     Hartree-Fock completeness: 99.99107360839844%
+2025-05-29 16:09:52.290032: Generating state at distance 0.5
+2025-05-29 16:09:57.449940: Double excitation state found at distance 0.5, Innerproduct 0.9983875718061053, DE=7
+2025-05-29 16:09:57.968373: Generating Orbital Basis Sets
+iDEA.methods.hartree_fock.solve: convergence = 2.0, tolerance = 0.01iDEA.methods.hartree_fock.solve: convergence = 1.0531e-14, tolerance = 0.01
+     Hartree-Fock completeness: 99.99162292480469%
+2025-05-29 16:09:58.692862: Generating state at distance 0.25
+2025-05-29 16:10:04.487228: Double excitation state found at distance 0.25, Innerproduct 0.9994390995068317, DE=7
+2025-05-29 16:10:05.009413: Generating Orbital Basis Sets
+iDEA.methods.hartree_fock.solve: convergence = 2.0, tolerance = 0.01iDEA.methods.hartree_fock.solve: convergence = 8.3982e-15, tolerance = 0.01
+     Hartree-Fock completeness: 99.99195861816406%
+2025-05-29 16:10:05.734392: Generating state at distance 0.0
+2025-05-29 16:10:10.727481: Double excitation state found at distance 0.0, Innerproduct 0.9999387124231393, DE=7
+2025-05-29 16:10:11.248365: Generating Orbital Basis Sets
+iDEA.methods.hartree_fock.solve: convergence = 2.0, tolerance = 0.01iDEA.methods.hartree_fock.solve: convergence = 1.1579e-14, tolerance = 0.01
+     Hartree-Fock completeness: 99.99208068847656%
+Final excitation number: 7
+Total states generated: 21
+States accepted: 21
+States rejected: 0
+
+Job completed at Thu May 29 16:10:12 BST 2025
+
+============================
+ Job utilisation efficiency
+============================
+
+Job ID: 19877020
+Cluster: viking2.yor.alces.network
+User/Group: jcre500/clusterusers
+State: COMPLETED (exit code 0)
+Nodes: 3
+Cores per node: 13
+CPU Utilized: 00:15:25
+CPU Efficiency: 15.84% of 01:37:20 core-walltime
+Job Wall-clock time: 00:02:26
+Memory Utilized: 349.23 MB
+Memory Efficiency: 0.36% of 96.00 GB
+ Requested wall clock time: 00:30:00
+    Actual wall clock time: 00:02:26
+Wall clock time efficiency: 8.1%
+           Job queued time: 00:00:20
